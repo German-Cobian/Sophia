@@ -4,5 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validate :username, uniqueness: { case_sensitive: false }
+  validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
 end
