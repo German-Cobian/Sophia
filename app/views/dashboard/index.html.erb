@@ -1,20 +1,19 @@
 <% if user_signed_in? %>
 <h1>You Are Signed In</h1>
 
-<%= form_with model: Article.new, url: articles_path, method: :post, local: true do |f| %>
-  <%= f.text_field :title %>
-  <%= f.text_field :body %>
-  <%= f.submit %>
-<% end %>
+<div> 
+  <%= render "shared/article_form" %>
+</div>
+<div>
+  <ul>
+    <% Article.find_each do |article| %>
+      <li>
+        <%= article.title %>
+        <%= article.body %>
+      </li>
+    <% end %>
+  </ul>
+</div>
   
-<ul>
-  <% Article.find_each do |article| %>
-    <li>
-      <%= article.title %>
-      <%= article.body %>
-    </li>
-  <% end %>
-</ul>
-
 <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-outline-primary btn-pill" %>
 <% end %>
