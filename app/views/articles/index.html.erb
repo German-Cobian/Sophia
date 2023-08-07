@@ -1,0 +1,12 @@
+<div>
+  <ul>
+    <% Article.find_each do |article| %>
+      <li>
+        <%= article.title %>
+        <%= article.body %>
+        <%= article.category.topic %>
+        <%= article.user.username%>
+      </li>
+    <% end %>
+  </ul>
+</div>

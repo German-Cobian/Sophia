@@ -1,5 +1,9 @@
 class ArticlesController < ApplicationController
 
+  def index
+    articles = Article.all
+  end
+
   def create
     article = Article.new(article_params.merge(user: current_user))
 

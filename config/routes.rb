@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   root "home#index"
   get :dashboard, to: "dashboard#index"
   resources :usernames, only: [:new, :update]
-  resources :articles, only: [:create]
+  resources :articles, only: [:index, :create]
+  resources :categories, only: [:index]
 end
