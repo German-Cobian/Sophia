@@ -1,0 +1,20 @@
+
+<div class="border border-dark py-5 px-5">
+  <%= form_with model: Article.new, url: articles_path, method: :post, local: true do |f| %>
+    <div class="mb-3">
+      <%= f.label "Article Title", class: "form-label" %><br />
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label "Article Body", class: "form-label" %><br />
+      <%= f.text_field :body, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label "Article Topic", class: "form-label" %><br />
+      <%= f.collection_select :category_id, Category.order(:id), :id, :topic, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.submit "Submit Article", class: "btn btn-outline-primary" %>
+    </div>
+  <% end %>
+</div>

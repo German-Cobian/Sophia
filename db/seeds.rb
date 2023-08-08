@@ -1,6 +1,7 @@
 puts "Seeding..."
 
-User.create(username: 'GlumpPunk09', email: 'glmpnk@gmail.com', password: 'glmpnk123')
+User.create(username: 'Aristokle01', email: 'aristo@gmail.com', password: 'aristo123')
+User.create(username: 'Schelling02', email: 'schell@gmail.com', password: 'schell123')
 
 Category.create(topic: 'Metaphysics')
 Category.create(topic: 'Gnoseology')
@@ -9,26 +10,50 @@ Category.create(topic: 'Ethics')
 
 Article.create(
   title: 'The world as it is and the world as perceived', 
-  body: 'Kant shares his insights', 
+  body: 'But if these don\'t match, which has the strongest case...', 
   user_id: 1, 
   category_id: 1)
 
 Article.create(
   title: 'The limits of human knowledge', 
-  body: 'Hume limits it to sense perceptions', 
+  body: 'Some would limit it to sense perceptions...', 
   user_id: 1, 
   category_id: 2)
 
   Article.create(
   title: 'The importance of the identity function',
-  body: 'Bertrand Russell gives us the scoop',
+  body: 'Bertrand Russell gives us the scoop...',
   user_id: 1,
   category_id: 3)
 
   Article.create(
   title: 'What precisely is the good life', 
-  body: 'The prime concern of Socrates', 
+  body: 'Socrates would discuss this whith a margarita in his hand...', 
   user_id: 1, 
+  category_id: 4)
+
+  Article.create(
+  title: 'Can we drill down to the "esence" of the thing', 
+  body: 'That we perceive the world in a uniquely human fashion is undubitable...', 
+  user_id: 2, 
+  category_id: 1)
+
+  Article.create(
+  title: 'If my eyes don\'t lie to me', 
+  body: 'can anything be more real than that which is tangible...', 
+  user_id: 2, 
+  category_id: 2)
+
+  Article.create(
+  title: 'The unconclusiveness principle',
+  body: 'Yet another cheer for nihilism from the logicians...',
+  user_id: 2,
+  category_id: 3)
+
+  Article.create(
+  title: 'The nausea of living', 
+  body: 'Let me drink deep of thy cup o despair...', 
+  user_id: 2, 
   category_id: 4)
 
 puts "Seeding done."
