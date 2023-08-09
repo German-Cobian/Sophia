@@ -1,11 +1,11 @@
-<div class="d-flex flex-row justify-content-between mt-5">
+<div class="d-flex flex-row justify-content-between mt-5 mx-5">
   <% Category.find_each do |category|%>
-    <li>
-      <b><%= category.topic %></b>
+    <li class="w-25 mx-4">
+      <b class="mb-5"><%= category.topic %></b>
       <% category.articles.each do |article|%>
-        <div>
-          <%= article.title %>
-          <%= article.body %>
+        <div class=my-5>
+          <p><b><%= article.title %></b></p>
+          <p><%= article.body %></p>
           <p><b>Author: </b><%= article.user.username %></p>
         <div>
       <% end %>

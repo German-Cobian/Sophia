@@ -1,19 +1,18 @@
-
 <div class="border border-dark py-5 px-5">
   <%= form_with model: Article.new, url: articles_path, method: :post, local: true do |f| %>
     <div class="mb-3">
-      <%= f.label "Article Title", class: "form-label" %><br />
-      <%= f.text_field :title, class: "form-control" %>
+      <b><%= f.label "Article Title", class: "form-label" %></b><br />
+      <%= f.text_field :title, class: "form-control form-control-sm" %>
     </div>
     <div class="mb-3">
-      <%= f.label "Article Body", class: "form-label" %><br />
-      <%= f.text_field :body, class: "form-control" %>
+      <b><%= f.label "Article Body", class: "form-label" %></b><br />
+      <%= f.text_field :body, class: "form-control form-control-sm" %>
     </div>
-    <div class="mb-3">
-      <%= f.label "Article Topic", class: "form-label" %><br />
+    <div class="d-flex flex-row mb-3">
+      <b class="pe-4"><%= f.label "Article Topic", class: "form-label" %></b><br />
       <%= f.collection_select :category_id, Category.order(:id), :id, :topic, class: "form-control" %>
     </div>
-    <div class="mb-3">
+    <div class="d-flex flex-row justify-content-end mb-3">
       <%= f.submit "Submit Article", class: "btn btn-outline-primary" %>
     </div>
   <% end %>

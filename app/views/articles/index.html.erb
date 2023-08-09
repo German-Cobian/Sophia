@@ -5,7 +5,7 @@
         <h3 class="mx-2"><%= category.topic %></h3>
     
         <% category.articles.each do |article|%>
-          <li class="d-flex flex-column justify-content-center border py-4 px-4 my-3 mx-2 bg-light">
+          <li class="art-cont d-flex flex-column justify-content-center border py-4 px-4 my-3 mx-2 bg-light">
             <p><b>Area: </b><%= article.category.topic %></b>
             <p><b>Title: </b><%= article.title %></p>
             <p><%= article.body %></p>

@@ -10,7 +10,7 @@
     </div>
     <div class="px-2">
       <% Category.find_each do |category| %>
-        <small><%= link_to category.topic,categories_path %></small>
+        <small><%= link_to category.topic, category %></small>
       <% end %>
     </div>
   </div>
@@ -24,7 +24,7 @@
       </div> 
 
       <div class="px-2">
-        <%= link_to articles_path, class:"" do %>
+        <%= link_to new_article_path, class:"" do %>
         "Create Article"
       <% end%>
       </div>
