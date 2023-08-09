@@ -1,6 +1,6 @@
 <div>
 
-  <div class="cover-main d-flex flex-row justify-content-center my-3 mx-5 border" style="height:300px">
+  <div class="d-flex flex-row justify-content-center my-3 mx-5 border" style="height:300px">
     <% articles = Article.order('created_at DESC').limit(1) %>
     <% articles.each do |article| %>
       <div class="w-100" >
@@ -12,7 +12,7 @@
     <% end %>
   </div>
 
-  <div class="cover-bottom d-flex flex-row justify-content-between mx-5" style="height:200px">
+  <div class="d-flex flex-row justify-content-between mx-5" style="height:200px">
     <% categories = Category.includes(:most_recent_article) %>
     <% categories.each do |category| %>
     
