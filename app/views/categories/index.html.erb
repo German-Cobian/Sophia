@@ -1,14 +1,31 @@
-<div class="d-flex flex-row justify-content-between mt-5 mx-5">
-  <% Category.find_each do |category|%>
-    <li class="w-25 mx-4">
-      <b class="mb-5"><%= category.topic %></b>
-      <% category.articles.each do |article|%>
-        <div class=my-5>
-          <p><b><%= article.title %></b></p>
-          <p><%= article.body %></p>
-          <p><b>Author: </b><%= article.user.username %></p>
+<div>
+
+  <div class="cover-main d-flex flex-row justify-content-center my-3 mx-5 border" style="height:300px">
+    <% articles = Article.order('created_at DESC').limit(1) %>
+    <% articles.each do |article| %>
+      <div class="w-100" >
+          <div class="mx-5">
+            <h6 class="txt-orange"><%= article.title %></h6>
+            <small><p><%= article.body %></p></small>
+          </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="cover-bottom d-flex flex-row justify-content-between mx-5" style="height:200px">
+    <% categories = Category.includes(:most_recent_article) %>
+    <% categories.each do |category| %>
+    
+      <div class="d-flex flex-column border w-25 mx-1 ">
         <div>
-      <% end %>
-    </li>
-  <% end %>
-</div>
+          <h6 class="px-2"><%= link_to category.topic, category %></h6>
+        </div>
+        <div>
+          <small><p class="px-2"><%= link_to category.most_recent_article&.title, class:"" %></p></small>
+        </div>
+      </div>
+    
+    <% end %>
+  </div>
+
+<div>
