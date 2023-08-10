@@ -5,12 +5,12 @@
   </div>
 
   <div class="d-flex flex-row justify-content-between mb-3">
-    <div class="me-3">
+    <div class="me-5">
       <%= link_to("Home", root_path, class: "link") %>
     </div>
-    <div class="px-2">
+    <div class="">
       <% Category.find_each do |category| %>
-        <small><%= link_to category.topic, category %></small>
+        <small class="me-4"><%= link_to category.topic, category %></small>
       <% end %>
     </div>
   </div>

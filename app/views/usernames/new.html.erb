@@ -10,7 +10,10 @@
         <%= f.label :username, class: "form-label" %>
         <%= f.text_field :username, class: "form-control" %>
       </div>
-
+      <div class="mx-5 my-3">
+        <b class="pe-4"><%= f.label :avatar, class: "form-label" %></b>
+        <%= f.file_field :avatar, class: "form-control" %>
+      </div>
       <div class="mx-5 my-3">
         <%= f.submit "set user info", class: "btn btn-twitter rounded-pill" %>
       </div>
