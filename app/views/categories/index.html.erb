@@ -11,7 +11,7 @@
             <h6 class="txt-orange"><%= article.title %></h6>
             <small><p><%= truncate article.body, length: 400 %></p></small>
             <div class="d-flex flex-row ms-2">
-              <%= image_tag( current_user.avatar, height: 30, width: 30, class: "rounded-circle" ) if current_user.avatar.attached? %></span>
+              <%= image_tag( article.user.avatar, height: 30, width: 30, class: "rounded-circle" ) if article.user.avatar.attached? %></span>
               <p class="ms-2"><%= article.user.username%></p>
             </div>
           </div>

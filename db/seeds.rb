@@ -1,7 +1,11 @@
 puts "Seeding..."
 
-User.create(username: 'Aristokle01', email: 'aristo@gmail.com', password: 'aristo123')
-User.create(username: 'Schelling02', email: 'schell@gmail.com', password: 'schell123')
+User.create(username: 'Aristokle01',
+  email: 'aristo@gmail.com',
+  password: 'aristo123').avatar.attach(io: File.open('app/assets/images/Aristo.jpg'), filename: 'Aristo.jpg')
+User.create(username: 'Schelling02',
+  email: 'schell@gmail.com',
+  password: 'schell123').avatar.attach(io: File.open('app/assets/images/Schell.jpg'), filename: 'Schell.jpg')
 
 Category.create(topic: 'Metaphysics')
 Category.create(topic: 'Gnoseology')
