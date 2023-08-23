@@ -8,6 +8,10 @@ class ArticlesController < ApplicationController
     @categories = Category.all
   end
 
+  def show
+    @article = Article.find(params[:id])
+  end
+
   def create
     article = Article.new(article_params.merge(user: current_user))
 
