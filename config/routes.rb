@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :articles, only: [:index, :new, :show, :create]
   resources :categories, only: [:index, :show]
   resources :votes, only: [:create, :destroy]
+
 end
