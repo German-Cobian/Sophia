@@ -49,7 +49,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 # Authentication
-gem "devise"
+gem 'devise'
 
 # Ruby linters
 gem 'rubocop', '>= 1.0', '< 2.0'
