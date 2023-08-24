@@ -3,6 +3,7 @@ class Article < ApplicationRecord
   belongs_to :category, class_name: 'Category', foreign_key: :category_id
 
   has_one_attached :image
+  has_many :votes, dependent: :destroy
 
   validates :title, presence: true
   validates :body, presence: true
