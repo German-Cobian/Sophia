@@ -7,6 +7,5 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :articles, dependent: :destroy
 
-  
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
 end
