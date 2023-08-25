@@ -1,11 +1,8 @@
 class VotesController < ApplicationController
-
   def create
     @vote = current_user.votes.new(vote_params)
 
-    if !@vote.save
-      flash[:notice] =  @vote.errors.full_messages.to_sentence
-    end
+    flash[:notice] = @vote.errors.full_messages.to_sentence unless @vote.save
 
     redirect_to @vote.article, notice: 'Upvoted'
   end
