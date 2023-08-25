@@ -12,6 +12,7 @@
               <%= image_tag( article.user.avatar, height: 30, width: 30, class: "rounded-circle" ) if article.user.avatar.attached? %></span>
               <p class="ms-2"><%= article.user.username%></p>
             </div>
+            <p><%= link_to 'Read More', article_path(article) %></p> 
           </li>
         <% end %>
       </div> 
