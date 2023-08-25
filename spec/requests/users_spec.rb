@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe 'Users', type: :request do
   let(:user) { create(:user) }
-  let(:user_2) { create(:user) }
+  let(:user2) { create(:user) }
   before { sign_in user }
 
   describe "GET show" do # test is not passing

@@ -9,8 +9,8 @@ RSpec.describe "Homes", type: :request do
       end
     end
 
-    context "when logged in" do
-      it "is succesful" do
+    context 'when logged in' do
+      it 'is succesful' do
         user = create(:user)
         sign_in user
         get dashboard_path
@@ -18,5 +18,4 @@ RSpec.describe "Homes", type: :request do
       end
     end
   end
-
 end
