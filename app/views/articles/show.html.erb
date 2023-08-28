@@ -21,11 +21,13 @@
       <div class="mt-1">
         <span><strong>Votes: </strong><%= @article.votes.count %></span>
       </div>
-      <% vote = current_user.votes.find_by(article: @article) %>
-      <% if vote.nil? %>
-        <%= button_to "Upvote", votes_path, params: { vote: {:article_id => @article.id } }, method: :post, class: "btn btn-outline-primary py-0 ms-5" %>
-      <% else %>
-        <%= button_to "Downvote", vote_path(vote), method: :delete, class: "btn btn-outline-primary py-0 ms-5" %>
+      <% if current_user %>
+        <% vote = current_user.votes.find_by(article: @article) %>
+        <% if vote.nil? %>
+          <%= button_to "Upvote", votes_path, params: { vote: {:article_id => @article.id } }, method: :post, class: "btn btn-outline-primary py-0 ms-5" %>
+        <% else %>
+          <%= button_to "Downvote", vote_path(vote), method: :delete, class: "btn btn-outline-primary py-0 ms-5" %>
+        <% end %>
       <% end %>
     </div>
 

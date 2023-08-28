@@ -44,7 +44,7 @@ Article.create(
 
   Article.create(
   title: 'If my eyes don\'t lie to me', 
-  body: 'can anything be more real than that which is tangible...', 
+  body: 'Can anything be more real than that which is tangible...', 
   user_id: 2, 
   category_id: 2).image.attach(io: File.open('app/assets/images/Locke.jpg'), filename: 'Locke.jpg')
 
