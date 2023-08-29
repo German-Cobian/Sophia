@@ -9,4 +9,11 @@ class User < ApplicationRecord
   has_many :votes
 
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
+
+  enum role: %i[user admin]
+  after_initialize :set_default_role, if: :new_record?
+
+  def set_default_role
+    self.role ||= :user
+  end
 end

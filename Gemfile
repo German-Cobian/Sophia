@@ -51,6 +51,9 @@ gem 'bootsnap', require: false
 # Authentication
 gem 'devise'
 
+# Authorization
+gem 'cancancan', '~> 3.5'
+
 # Ruby linters
 gem 'rubocop', '>= 1.0', '< 2.0'
 
