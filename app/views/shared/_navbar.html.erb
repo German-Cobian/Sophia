@@ -32,10 +32,15 @@
         <%= link_to "Create Article", new_article_path, class:"txt-n" %>
       </div>
 
+      <% if current_user.admin? %>
+        <div class="pe-3">  
+          <%= link_to "Create Category", new_category_path, class:"txt-n" %>
+        </div>
+      <% end %>
+
       <div class="pe-3">
         <%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete}, class: "txt-n" %>
       </div>
-
 
     <% else%> 
 

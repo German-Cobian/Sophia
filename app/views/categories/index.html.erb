@@ -21,7 +21,7 @@
   </div>
 
   <h4 class="mt-4 ms-5"><b>Most Recent</b></h4>
-  <div class="d-flex flex-column flex-md-row justify-content-between mx-5" >
+  <div class="d-flex flex-wrap justify-content-between mx-5" >
     <% categories = Category.includes(:most_recent_article) %>
     <% categories.each do |category| %>
       <div class="cat2-container d-flex flex-column align-items-center border mt-3 mx-1 ">
@@ -29,7 +29,7 @@
           <h6 class="mt-3"><%= link_to category.topic, category %></h6>
         </div>
         <div>
-          <%= link_to image_tag(category.most_recent_article&.image, height: 120, width: 150), category_path(category) %>
+          <%= link_to image_tag(category.most_recent_article&.image, height: 120, width: 150), category_path(category)  %>
         </div>
         <div class="my-3 mx-2">
           <small class="cat-title"><%= truncate category.most_recent_article&.title, length: 35 %></small>

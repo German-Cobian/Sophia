@@ -8,7 +8,7 @@ Rails.application.routes.draw do
  
   resources :usernames, only: [:new, :update]
   resources :articles, only: [:index, :new, :show, :create]
-  resources :categories, only: [:index, :show]
+  resources :categories, only: [:index, :show, :new, :create]
   resources :votes, only: [:create, :destroy]
   resources :articles do
     resources :comments, only: [:index, :create]
