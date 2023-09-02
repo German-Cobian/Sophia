@@ -8,4 +8,15 @@
       <%= f.submit "Submit Category", class: "btn btn-outline-primary" %>
     </div>
   <% end %>
+
+  <% categories = Category.all%>
+  <% categories.each do |category|%>
+    <div class="d-flex flex-column mb-3">
+      <div class="d-flex flex-row justify-content-between">
+        <%= category.topic %>
+        <%= button_to "Delete", category_path(category), method: :delete, class:"btn btn-outline-danger me-5"%>
+      </div>
+    </div>
+  <% end %>
+
 </div>
