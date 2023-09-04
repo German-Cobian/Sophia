@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    article = Article.new(article_params.merge(user: current_user))
+    article = Article.new(article_params.merge(creator: current_user))
 
     return unless article.save
 

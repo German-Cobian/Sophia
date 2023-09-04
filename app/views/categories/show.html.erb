@@ -4,7 +4,7 @@
     <% @category.articles.order('created_at DESC').each do |article|%>
       <div class="cat3-container d-flex flex-column flex-lg-row border mt-3 ml-2">
         <div class="img-cat">
-          <%= image_tag(article.image, height: 220, width: 220) if article.image.attached? %> 
+          <%= image_tag(article.image, height: 220, width: 220, class: "me-5" ) %> 
         </div>
         <div>
           <h6 class="mt-2 mx-2"><b><%= article.title %></b></h6>

@@ -2,13 +2,13 @@
   <div class="my-3 mx-5">
   
     <div class="d-flex flex-row justify-content-start">
-      <%= image_tag( @article.image, height: 120, width: 120, class: "me-5" ) if @article.image.attached? %> 
+      <%= image_tag( @article.image, height: 120, width: 120, class: "me-5" ) %> 
       <div class="mt-3">
         <strong class="me-4"><%= @article.title %></strong>
         <small><%= @article.category.topic%></small>
         <div class="d-flex flex-row justify-content-start mt-3">
           <p class="me-3"><strong>By: </strong></p>
-          <%= image_tag( @article.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) if @article.creator.avatar.attached?%>
+          <%= image_tag( @article.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) if @article.creator.avatar.attached? %>
           <p class="ms-2"><%= @article.creator.username %><p>
         </div>
       </div>

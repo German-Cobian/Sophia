@@ -6,13 +6,17 @@
     <% popular.each do |vote| %>
       <div class="d-flex flex-column flex-md-row justify-content-around w-100" >
           <div class="img-pop mt-3">
-            <%= image_tag(vote.article.image, height: 270 ) if vote.article.image.attached? %>
+            <% if vote.article.image.attached? %> 
+              <%= image_tag( vote.article.image, height: 120, width: 120, class: "me-5" ) %>
+            <% else %>
+              <%=  image_tag("Default_img.jpg", height: 120, width: 120, class: "me-5" ) %>
+            <% end %>
           </div>
           <div class="mt-3 mx-5">
             <h6 class="txt-orange"><%= vote.article.title %></h6>
             <small><p><%= truncate vote.article.body, length: 400 %></p></small>
             <div class="d-flex flex-row ms-2">
-              <%= image_tag( vote.article.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) if vote.article.creator.avatar.attached? %></span>
+              <%= image_tag( vote.article.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) %></span>
               <p class="ms-2"><%= vote.article.creator.username%></p>
             </div>
           </div>
@@ -29,7 +33,11 @@
           <h6 class="mt-3"><%= link_to category.topic, category %></h6>
         </div>
         <div>
-          <%= link_to image_tag(category.most_recent_article&.image, height: 120, width: 150), category_path(category)  %>
+          <% if category.most_recent_article&.image %> 
+            <%= link_to image_tag( category.most_recent_article&.image, height: 120, width: 120, class: "me-5" ) %>
+          <% else %>
+            <%= image_tag("Default_img.jpg", height: 120, width: 120, class: "me-5" ) %>
+          <% end %>
         </div>
         <div class="my-3 mx-2">
           <small class="cat-title"><%= truncate category.most_recent_article&.title, length: 35 %></small>
