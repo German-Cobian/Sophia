@@ -1,10 +1,5 @@
 puts "Seeding..."
 
-User.create(username: 'Admin01',
-  role: 1,
-  email: 'admin@gmail.com',
-  password: 'admin123').avatar.attach(io: File.open('app/assets/images/Bogart.jpg'), filename: 'Bogart.jpg')
-
 User.create(username: 'Aristokle01',
   role: 0,
   email: 'aristo@gmail.com',
@@ -14,6 +9,11 @@ User.create(username: 'Schelling02',
   role: 0,
   email: 'schell@gmail.com',
   password: 'schell123').avatar.attach(io: File.open('app/assets/images/Schell.jpg'), filename: 'Schell.jpg')
+
+User.create(username: 'Admin01',
+  role: 1,
+  email: 'admin@gmail.com',
+  password: 'admin123').avatar.attach(io: File.open('app/assets/images/Bogart.jpg'), filename: 'Bogart.jpg')
 
 Category.create(topic: 'Metaphysics')
 Category.create(topic: 'Gnoseology')

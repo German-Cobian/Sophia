@@ -1,5 +1,5 @@
 <div class="border border-dark py-3 px-5">
-  <%= form_with model: Article.new, url: articles_path, method: :post, local: true do |f| %>
+  <%= form_with model: @article do |f| %>
     <div class="mb-3">
       <b><%= f.label "Article Title", class: "form-label" %></b><br />
       <%= f.text_field :title, class: "form-control form-control-sm" %>
