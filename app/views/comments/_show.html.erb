@@ -2,9 +2,16 @@
   <strong>Comments: </strong>
   <%= @article.comments.count %>  
   <% @article.comments.each do |comment| %>
-    <div class="my-4">
-      <p class="ms-5"><span>* <%= comment.body %></p></span>
-      <p><small><%= time_ago_in_words(comment.created_at) %> ago</p></small>
+    <div class="my-4 ms-5">
+      <div class="d-flex flex-row justify-content-start">
+        <%= image_tag( comment.user.avatar, height: 30, width: 30, class: "rounded-circle" ) %>
+        <p class="ms-2"><small><%= comment.user.username %></small><p>
+      </div>
+      <p class="my-0 ms-5"><span>* <small><%= comment.body %></small></p></span>
+      <div class="d-flex flex-row justify-content-end">
+        <p class="me-3"><small><%= time_ago_in_words(comment.created_at) %> ago</p></small>
+        <%= button_to "Delete Comment", article_comment_path(comment), method: :delete, class:"btn btn-outline-danger py-0 me-5"%>
+      </div>
     </div>
   <% end %>
 </div>

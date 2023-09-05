@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show, :new, :create, :destroy]
   resources :votes, only: [:create, :destroy]
   resources :articles do
-    resources :comments, only: [:index, :create]
+    resources :comments, only: [:index, :create, :destroy]
   end
 end

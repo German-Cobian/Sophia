@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(comment_params)
+    @comment = Comment.new(comment_params.merge(user: current_user))
     @comment.article_id = params[:article_id]
     if @comment.save
       flash.now[:success] = 'Comment was successfully created.'
@@ -15,9 +15,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to article_path(params[:article_id]), notice: 'Comment was successfully destroyed.' }
+    end
+  end
+
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :article_id)
+    params.require(:comment).permit(:body, :article_id, :user_id)
   end
 end
