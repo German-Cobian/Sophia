@@ -13,8 +13,11 @@
       <div class="d-flex flex-row justify-content-end">
         <p class="mt-2 me-3"><small><%= time_ago_in_words(comment.created_at) %> ago</p></small>
         <% if comment.commenter == current_user %>
+          <%= link_to edit_article_comment_path(@article, comment), class:"mt-1 me-3" do %>
+            <%= image_tag "Edit.jpg", width: "25", class: "" %>
+          <% end %>
           <%= button_to article_comment_path(@article, comment), method: :delete, class:"" do %>
-            <%= image_tag "Trash-can.jpg", width: "20", class: "trash" %>
+            <%= image_tag "Trash-can.jpg", width: "15", class: "trash" %>
           <% end %>
         <% end %>
       </div>
