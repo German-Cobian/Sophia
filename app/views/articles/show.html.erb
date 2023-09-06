@@ -16,19 +16,22 @@
 
     <div class="mt-5">
       <%= @article.body %>
-      <%= @article.id %>
     </div>
 
     <div class="d-flex flex-row mt-3">
-      <div class="mt-1">
+      <div class="mt-1 me-5">
         <span><strong>Votes: </strong><%= @article.votes.count %></span>
       </div>
       <% if current_user %>
         <% vote = current_user.votes.find_by(article: @article) %>
         <% if vote.nil? %>
-          <%= button_to "Upvote", votes_path, params: { vote: {:article_id => @article.id } }, method: :post, class: "btn btn-outline-primary py-0 ms-5" %>
+          <%= button_to votes_path, params: { vote: {:article_id => @article.id } }, method: :post, class: "" do %>
+            <%= image_tag "Thumbs-up.jpg", width: "30", class: "" %>
+          <% end %>
         <% else %>
-          <%= button_to "Downvote", vote_path(vote), method: :delete, class: "btn btn-outline-primary py-0 ms-5" %>
+          <%= button_to vote_path(vote), method: :delete, class: "-5" do %>
+            <%= image_tag "Thumbs-down.jpg", width: "30", class: "" %>
+          <% end %>
         <% end %>
       <% end %>
     </div>
