@@ -26,5 +26,4 @@ class Article < ApplicationRecord
       SQL
     )
   }
-
 end

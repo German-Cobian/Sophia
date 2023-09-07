@@ -8,11 +8,11 @@
         </div>
         <div>
           <h6 class="mt-2 mx-2"><b><%= article.title %></b></h6>
-          <p class="mx-2"><%= truncate article.body, length: 200 %></p>
           <div class="d-flex flex-row ms-2">
                 <%= image_tag( article.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) if article.creator.avatar.attached? %></span>
                 <p class="ms-2"><small><%= article.creator.username%></small></p>
           </div>
+          <p class="mx-2"><%= truncate article.body, length: 200 %></p>
           <p class="ms-2"><small><%= link_to 'Read More', article_path(article) %></small></p> 
         </div>
       </div>
