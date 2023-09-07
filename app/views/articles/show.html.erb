@@ -7,9 +7,9 @@
         <strong class="me-4"><%= @article.title %></strong>
         <small><%= @article.category.topic%></small>
         <div class="d-flex flex-row justify-content-start mt-3">
-          <p class="me-3"><strong>By: </strong></p>
+          <p class="me-3"><small><strong>By: </strong></small></p>
           <%= image_tag( @article.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) if @article.creator.avatar.attached? %>
-          <p class="ms-2"><%= @article.creator.username %><p>
+          <p class="ms-2"><small><%= @article.creator.username %></small><p>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
 
     <div class="d-flex flex-row mt-3">
       <div class="mt-1 me-5">
-        <span><strong>Votes: </strong><%= @article.votes.count %></span>
+        <span><small><strong>Votes: </strong><%= @article.votes.count %></small></span>
       </div>
       <% if current_user %>
         <% vote = current_user.votes.find_by(article: @article) %>
@@ -45,7 +45,7 @@
       </div>
       <% if  @article.creator == current_user || current_user.admin? %>
         <div class="d-flex flex-row justify-content-end mt-2">
-          <p class="mt-2 me-3"><small>Manage Articles:</p></small>
+          <p class="mt-2 me-3"><small>Manage Article:</p></small>
           <div class="mt-1 me-3">
             <%= link_to edit_article_path(@article), class: "" do %>
               <%= image_tag "Edit.jpg", width: "25", class: "" %>
@@ -61,7 +61,7 @@
     <% end %>
 
     <div class="mt-3">
-      <%= link_to 'Back', categories_path %>
+      <small><%= link_to 'Back', categories_path %></small>
     </div>
 
   </div>

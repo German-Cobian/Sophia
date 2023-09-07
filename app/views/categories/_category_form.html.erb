@@ -14,7 +14,9 @@
     <div class="d-flex flex-column mb-3">
       <div class="d-flex flex-row justify-content-between">
         <%= category.topic %>
-        <%= button_to "Delete", category_path(category), method: :delete, class:"btn btn-outline-danger py-0 me-5"%>
+        <%= button_to category_path(category), method: :delete, class: "py-0 me-5" do %>
+          <%= image_tag "Trash-can.jpg", width: "15", class: "" %>
+        <% end %>
       </div>
     </div>
   <% end %>

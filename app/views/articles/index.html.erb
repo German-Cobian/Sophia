@@ -1,18 +1,18 @@
 <div>
-  <div class="d-flex flex-row justify-content-between mt-5">
+  <div class="mt-5">
     <% Category.find_each do |category|%>
-      <div>
-        <h3 class="mx-2"><%= category.topic %></h3>
+      <div class="d-flex flex-column justify-content-between border border-dark my-5 mx-4">
+        <h3 class=" my-3  ms-3"><%= category.topic %></h3>
         <% category.articles.each do |article|%>
-          <li class="art-cont d-flex flex-column justify-content-start border h-50 py-2 px-4 mx-2 bg-light">
-            <%= image_tag( article.image, height: 50, width: 50, class: "pt-3" ) if article.image.attached? %> 
+          <li class="art-cont d-flex flex-wrap justify-content-between border h-50 my-2 px-4 mx-3 bg-light">
+            <%= image_tag( article.image, height: 50, width: 50, class: "pt-3 me-3" ) if article.image.attached? %> 
             <p class="mt-3"><b><%= article.title %></b></p>
-            <p><%= truncate article.body, length: 200 %></p>
-            <div class="d-flex flex-row">
+            <div class="d-flex flex-row mt-3 me-5">
               <%= image_tag( article.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) if article.creator.avatar.attached? %></span>
-              <p class="ms-2"><%= article.creator.username%></p>
+              <p class="ms-2 me-4"><small><%= article.creator.username%></small></p>
+              <p><small><%= link_to 'Go to', article_path(article) %></small></p>
             </div>
-            <p><%= link_to 'Read More', article_path(article) %></p> 
+             
           </li>
         <% end %>
       </div> 
