@@ -1,0 +1,25 @@
+.txt-n {
+  font-size: 12px;
+  color: white;
+  text-decoration: none;
+}
+
+.txt-n2 {
+  color: red;
+}
+
+.txt-drop {
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.lnk-h {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 800px) {
+  .txt-n2 {
+    margin-top: 5px;
+    font-size: 15px;
+  }
+}

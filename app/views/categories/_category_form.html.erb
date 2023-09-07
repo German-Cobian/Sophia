@@ -1,0 +1,24 @@
+<div class="border border-dark py-3 px-5">
+  <%= form_with model: Category.new, url: categories_path, method: :post, local: true do |f| %>
+    <div class="mb-3">
+      <b><%= f.label "Topic Category", class: "form-label" %></b><br />
+      <%= f.text_field :topic, class: "form-control form-control-sm" %>
+    </div>
+    <div class="d-flex flex-row justify-content-end mb-3">
+      <%= f.submit "Submit Category", class: "btn btn-outline-primary py-0" %>
+    </div>
+  <% end %>
+
+  <% categories = Category.all%>
+  <% categories.each do |category|%>
+    <div class="d-flex flex-column mb-3">
+      <div class="d-flex flex-row justify-content-between">
+        <%= category.topic %>
+        <%= button_to category_path(category), method: :delete, class: "py-0 me-5" do %>
+          <%= image_tag "Trash-can.jpg", width: "15", class: "" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+</div>

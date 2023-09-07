@@ -1,5 +1,23 @@
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+.txt-f {
+  font-size: 12px;
+}
+
+.txt-fh {
+  color: red;
+}
+
+@media screen and (max-width: 800px) {
+  .txt-f {
+    font-size: 8px;
+  }
+
+  .txt-fh {
+    font-size: 10px;
+  }
 }

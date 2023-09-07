@@ -1,11 +1,19 @@
 puts "Seeding..."
 
 User.create(username: 'Aristokle01',
+  role: 0,
   email: 'aristo@gmail.com',
   password: 'aristo123').avatar.attach(io: File.open('app/assets/images/Aristo.jpg'), filename: 'Aristo.jpg')
+
 User.create(username: 'Schelling02',
+  role: 0,
   email: 'schell@gmail.com',
   password: 'schell123').avatar.attach(io: File.open('app/assets/images/Schell.jpg'), filename: 'Schell.jpg')
+
+User.create(username: 'Admin01',
+  role: 1,
+  email: 'admin@gmail.com',
+  password: 'admin123').avatar.attach(io: File.open('app/assets/images/Bogart.jpg'), filename: 'Bogart.jpg')
 
 Category.create(topic: 'Metaphysics')
 Category.create(topic: 'Gnoseology')
@@ -44,7 +52,7 @@ Article.create(
 
   Article.create(
   title: 'If my eyes don\'t lie to me', 
-  body: 'can anything be more real than that which is tangible...', 
+  body: 'Can anything be more real than that which is tangible...', 
   user_id: 2, 
   category_id: 2).image.attach(io: File.open('app/assets/images/Locke.jpg'), filename: 'Locke.jpg')
 

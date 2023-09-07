@@ -1,10 +1,25 @@
-<div class="mt-3">
-  <strong>Comments: </strong>
-  <%= @article.comments.count %>  
+<div class="mt-5 border border-dark">
+  <div class="my-3">
+    <small class="ms-3"><strong>Comments: </strong><%= @article.comments.count %></small>
+  </div>
   <% @article.comments.each do |comment| %>
-    <div class="my-4">
-      <p class="ms-5"><span>* <%= comment.body %></p></span>
-      <p><small><%= time_ago_in_words(comment.created_at) %> ago</p></small>
+    <div class="mx-3">
+      <div class="d-flex flex-row justify-content-start">
+        <%= image_tag( comment.commenter.avatar, height: 30, width: 30, class: "rounded-circle" ) %>
+        <p class="ms-2"><small><%= comment.commenter.username %></small><p>
+      </div>
+      <p class="my-0 ms-4"><span>* <small><%= comment.body %></small></p></span>
+      <div class="d-flex flex-row justify-content-end">
+        <p class="mt-2 me-3"><small><%= time_ago_in_words(comment.created_at) %> ago</p></small>
+        <% if comment.commenter == current_user || current_user.admin? %>
+          <%= link_to edit_article_comment_path(@article, comment), class:"mt-1 me-3" do %>
+            <%= image_tag "Edit.jpg", width: "25", class: "" %>
+          <% end %>
+          <%= button_to article_comment_path(@article, comment), method: :delete, class:"" do %>
+            <%= image_tag "Trash-can.jpg", width: "15", class: "" %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

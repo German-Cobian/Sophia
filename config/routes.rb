@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   get :dashboard, to: "categories#index"
  
   resources :usernames, only: [:new, :update]
-  resources :articles, only: [:index, :new, :show, :create]
-  resources :categories, only: [:index, :show]
+  resources :articles, only: [:index, :new, :show, :create, :update, :destroy]
+  resources :categories, only: [:index, :show, :new, :create, :destroy]
   resources :votes, only: [:create, :destroy]
   resources :articles do
-    resources :comments, only: [:index, :create]
+    resources :comments, only: [:index, :create, :edit, :update, :destroy]
   end
 end
