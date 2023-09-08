@@ -3,44 +3,10 @@
     <small class="ms-3"><strong>Comments: </strong><%= @article.comments.count %></small>
   </div>
  
-  <% @article.comments.where(parent_id: nil).each do |comment| %>
-    <div class="mx-3">
-      <div class="d-flex flex-row justify-content-start">
-        <%= image_tag( comment.commenter.avatar, height: 30, width: 30, class: "rounded-circle" ) %>
-        <p class="ms-2"><small><%= comment.commenter.username %></small><p>
-      </div>
-      <p class="my-0 ms-4"><span>* <small><%= comment.body %></small></p></span>
-      <div class="d-flex flex-row justify-content-end">
-        <p class="mt-2 me-3"><small><%= time_ago_in_words(comment.created_at) %> ago</p></small>
-        <% if comment.commenter == current_user || current_user.admin? %>
-          <%= link_to edit_article_comment_path(@article, comment), class:"mt-1 me-3" do %>
-            <%= image_tag "Edit.jpg", width: "25", class: "" %>
-          <% end %>
-          <%= button_to article_comment_path(@article, comment), method: :delete, class:"" do %>
-            <%= image_tag "Trash-can.jpg", width: "15", class: "" %>
-          <% end %>
-        <% end %>
-      </div>
-      <% comment.comments.each do |comment| %>
-        <div class="ms-4">
-          <div class="d-flex flex-row justify-content-start">
-            <%= image_tag( comment.commenter.avatar, height: 30, width: 30, class: "rounded-circle" ) %>
-            <p class="ms-2"><small><%= comment.commenter.username %></small><p>
-          </div>
-          <p class="my-0 ms-4"><span>* <small><%= comment.body %></small></p></span>
-          <div class="d-flex flex-row justify-content-end">
-          <p class="mt-2 me-3"><small><%= time_ago_in_words(comment.created_at) %> ago</p></small>
-          <% if comment.commenter == current_user || current_user.admin? %>
-            <%= link_to edit_article_comment_path(@article, comment), class:"mt-1 me-3" do %>
-              <%= image_tag "Edit.jpg", width: "25", class: "" %>
-            <% end %>
-            <%= button_to article_comment_path(@article, comment), method: :delete, class:"" do %>
-              <%= image_tag "Trash-can.jpg", width: "15", class: "" %>
-            <% end %>
-          <% end %>
-      </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="mx-3">
+    <% @article.comments.where(parent_id: nil).each do |comment| %>
+      <%= render 'comments/comment_display', comment: comment, article: @article %>
+    <% end %>
+  </div>
+
 </div>

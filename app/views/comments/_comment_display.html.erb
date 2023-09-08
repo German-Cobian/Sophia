@@ -1,0 +1,11 @@
+<div class="ms-<%= comment.depth * 4 %>">
+  <%= render 'comments/comment_layout', article: @article, comment: comment %>
+</div>
+
+<% if comment.comments.any? %>
+  <div class="nested-comments">
+    <% comment.comments.each do |child_comment| %>
+      <%= render 'comments/comment_display', comment: child_comment, article: @article  %>
+    <% end %>
+  </div>
+<% end %>

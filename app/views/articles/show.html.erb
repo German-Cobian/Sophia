@@ -41,7 +41,7 @@
         <%= render '/comments/show' %>
       </div>
       <div>
-        <%= render '/comments/comment_form' %>
+        <%= render '/comments/comment_form', article: @article, parent: nil %>
       </div>
       <% if  @article.creator == current_user || current_user.admin? %>
         <div class="d-flex flex-row justify-content-end mt-2">
