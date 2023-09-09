@@ -1,6 +1,6 @@
-<div>
+<div class="c-margin" style="margin-left: <%= comment.depth * 20 %>px !important;"> 
   <div class="d-flex flex-row justify-content-start">
-    <%= image_tag( comment.commenter.avatar, height: 30, width: 30, class: "rounded-circle" ) %>
+    <%= image_tag( comment.commenter.avatar, height: 27, width: 27, class: "rounded-circle" ) %>
     <%= comment.depth %>
     <p class="ms-2"><small><%= comment.commenter.username %></small><p>
   </div>
@@ -17,16 +17,27 @@
     <% end %>
   </div>
   <a href="#" class="c-reply d-flex flex-row justify-content-end my-0 mb-2"><small>Reply</small></a>
-  <div class="cf-display">
+  <div class="cf-display mb-2">
       <%= render '/comments/comment_form', article: comment.article, parent: comment %>
   </div>
 </div>
 
 <script>
- document.querySelectorAll('.c-reply').forEach((el) => {
+document.querySelectorAll('.c-reply').forEach((el) => {
+  let isDisplayed = false;
+  
   el.addEventListener('click', (event) => {
-   event.preventDefault()
-   el.nextElementSibling.style = 'display: block;'
-  })
- })
+    event.preventDefault();
+    
+    if (!isDisplayed) { 
+      el.nextElementSibling.style = 'display: block;';
+      el.innerHTML = el.innerHTML.replace('Reply','Close');
+    } else {
+      el.nextElementSibling.style = 'display: none;';
+      el.innerHTML = el.innerHTML.replace('Close','Reply') 
+    }
+
+    isDisplayed = !isDisplayed;
+  });
+});
 </script>
