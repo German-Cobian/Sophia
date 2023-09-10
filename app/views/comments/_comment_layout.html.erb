@@ -1,0 +1,43 @@
+<div class="c-margin" style="margin-left: <%= comment.depth * 20 %>px !important;">
+  <div class="d-flex flex-row justify-content-start">
+    <%= image_tag( comment.commenter.avatar, height: 27, width: 27, class: "rounded-circle" ) %>
+    <p class="ms-2"><small><%= comment.commenter.username %></small><p>
+  </div>
+  <p class="my-0 ms-4"><span><small>Comment thread: <%= comment.depth %></small></p></span>
+  <p class="my-0 ms-4"><span>* <small><%= comment.body %></small></p></span>
+  <div class="d-flex flex-row justify-content-end my-0">
+    <p class="mt-2 me-3"><small><%= time_ago_in_words(comment.created_at) %> ago</p></small>
+    <% if comment.commenter == current_user || current_user.admin? %>
+      <%= link_to edit_article_comment_path(@article, comment), class:"mt-1 me-3" do %>
+        <%= image_tag "Edit.jpg", width: "25", class: "" %>
+      <% end %>
+      <%= button_to article_comment_path(@article, comment), method: :delete, class:"" do %>
+        <%= image_tag "Trash-can.jpg", width: "15", class: "" %>
+      <% end %>
+    <% end %>
+  </div>
+  <a href="#" class="c-reply d-flex flex-row justify-content-end my-0 mb-2"><small>Reply</small></a>
+  <div class="cf-display mb-2">
+      <%= render '/comments/comment_form', article: comment.article, parent: comment %>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.c-reply').forEach((el) => {
+  let isDisplayed = false;
+  
+  el.addEventListener('click', (event) => {
+    event.preventDefault();
+    
+    if (!isDisplayed) { 
+      el.nextElementSibling.style = 'display: block;';
+      el.innerHTML = el.innerHTML.replace('Reply','Close');
+    } else {
+      el.nextElementSibling.style = 'display: none;';
+      el.innerHTML = el.innerHTML.replace('Close','Reply') 
+    }
+
+    isDisplayed = !isDisplayed;
+  });
+});
+</script>
