@@ -1,9 +1,9 @@
-<div class="c-margin" style="margin-left: <%= comment.depth * 20 %>px !important;"> 
+<div class="c-margin" style="margin-left: <%= comment.depth * 20 %>px !important;">
   <div class="d-flex flex-row justify-content-start">
     <%= image_tag( comment.commenter.avatar, height: 27, width: 27, class: "rounded-circle" ) %>
-    <%= comment.depth %>
     <p class="ms-2"><small><%= comment.commenter.username %></small><p>
   </div>
+  <p class="my-0 ms-4"><span><small>Comment thread: <%= comment.depth %></small></p></span>
   <p class="my-0 ms-4"><span>* <small><%= comment.body %></small></p></span>
   <div class="d-flex flex-row justify-content-end my-0">
     <p class="mt-2 me-3"><small><%= time_ago_in_words(comment.created_at) %> ago</p></small>

@@ -6,9 +6,8 @@ class Comment < ApplicationRecord
   has_many :comments, foreign_key: :parent_id
 
   validates_presence_of :body, length: { minimum: 3, maximum: 500 }
-  
+
   def depth
     parent ? parent.depth + 1 : 0
   end
-
 end
