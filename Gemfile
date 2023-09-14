@@ -88,3 +88,6 @@ end
 gem 'cssbundling-rails', '~> 1.2'
 
 gem 'jsbundling-rails', '~> 1.1'
+
+# For Search functionality
+gem "ransack", "~> 4.0"
