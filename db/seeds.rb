@@ -1,18 +1,35 @@
 puts "Seeding..."
 
 User.create(username: 'Aristokle01',
+  display_name: 'Aristotle Kleon',
   role: 0,
   email: 'aristo@gmail.com',
-  password: 'aristo123').avatar.attach(io: File.open('app/assets/images/Aristo.jpg'), filename: 'Aristo.jpg')
+  password: 'aristo123',
+  date_of_birth: '02 May 1985 21:20:49.262680000',
+  location: 'Greece',
+  join_date: '15 Feb 2022 21:20:49.262680000',
+  bio: 'Give me them classical, old time philosophers.',
+  ).avatar.attach(io: File.open('app/assets/images/Aristo.jpg'), filename: 'Aristo.jpg')
 
 User.create(username: 'Schelling02',
+  display_name: 'Guy Schelling',
   role: 0,
   email: 'schell@gmail.com',
-  password: 'schell123').avatar.attach(io: File.open('app/assets/images/Schell.jpg'), filename: 'Schell.jpg')
+  password: 'schell123',
+  date_of_birth: '23 Jul 1994 21:20:49.262680000',
+  location: 'Germany',
+  join_date: '11 Jan 2021 21:20:49.262680000',
+  bio: 'Investigate with caution, assert your truth fiercely.',
+  ).avatar.attach(io: File.open('app/assets/images/Schell.jpg'), filename: 'Schell.jpg')
 
 User.create(username: 'Admin01',
+  display_name: 'Humphrey Bogart',
   role: 1,
   email: 'admin@gmail.com',
+  date_of_birth: '19 Sep 1967 21:20:49.262680000',
+  location: 'Paris',
+  join_date: '07 Nov 2019 21:20:49.262680000',
+  bio: 'Assert your truth with power, crush all dissenting voices.',
   password: 'admin123').avatar.attach(io: File.open('app/assets/images/Bogart.jpg'), filename: 'Bogart.jpg')
 
 Category.create(topic: 'Metaphysics')
