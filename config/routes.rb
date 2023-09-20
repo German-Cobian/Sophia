@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "categories#index"
   get :dashboard, to: "categories#index"
-  get :profile, to: "profile#show"
 
-  resources :usernames, only: [:new, :update]
+  resources :profile, only: [:show, :new, :update]
   resources :articles, only: [:index, :new, :show, :create, :update, :destroy]
   resources :categories, only: [:index, :show, :new, :create, :destroy]
   resources :votes, only: [:create, :destroy]

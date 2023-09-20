@@ -83,7 +83,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_180930) do
     t.integer "role", default: 0
     t.string "display_name"
     t.date "date_of_birth"
-    t.string "location"
+    t.string "city"
+    t.string "country"
     t.date "join_date"
     t.text "bio"
     t.index ["email"], name: "index_users_on_email", unique: true

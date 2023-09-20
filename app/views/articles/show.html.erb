@@ -10,6 +10,9 @@
           <p class="me-3"><small><strong>By: </strong></small></p>
           <%= image_tag( @article.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) if @article.creator.avatar.attached? %>
           <p class="ms-2"><small><%= @article.creator.username %></small><p>
+          <% if current_user %>
+            <p class="ms-5"><small><%= link_to 'View Profile', profile_path(@article.creator), class: "" %></small></p>
+          <% end %>
         </div>
       </div>
     </div>
