@@ -4,7 +4,6 @@ class ProfileAddonsToUsers < ActiveRecord::Migration[7.0]
     add_column :users, :date_of_birth, :date
     add_column :users, :city, :string
     add_column :users, :country, :string
-    add_column :users, :join_date, :date
     add_column :users, :bio, :text
   end
 end

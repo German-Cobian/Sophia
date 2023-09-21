@@ -1,6 +1,6 @@
 <div class="d-flex flex-wrap justify-content-start border rounded border-dark my-5 mx-5 py-5 px-5">
   
-  <div class="d-flex flex-column">
+  <div class="d-flex flex-column p-cont1">
     <% if @user.avatar.present? %>
       <%= image_tag @user.avatar, size: "150x150", class: "rounded-circle me-5" %>
     <% else %>
@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="d-flex flex-column ">
+  <div class="d-flex flex-column p-cont2">
 
     <div class="d-flex flex-row justify-content-between">
       <div>
@@ -28,7 +28,7 @@
           </div>
           <div class="me-3">
             <span><%= image_tag "calendar.jpg", size: "20x20", class: "me-1" %></span>
-            <span><small><%= @user.join_date %></small></span>
+            <span><small><%= @user.created_at.strftime("%b %d %Y") %></small></span>
           </div>
         </div>
         <div class="d-flex flex-row justify-content-start mt-2">
@@ -37,8 +37,8 @@
         </div>
       </div>
       <div class="d-flex flex-row justify-content-end mt-2 ms-5">
-        <% if @user == current_user || current_user.admin? %>
-          <small><%= link_to 'Edit Profile', profile_path(@user), class: "btn btn-twitter-outline rounded-pill" %></small>
+        <% if @user == current_user %>
+          <small><%= link_to "Edit Profile", new_profile_path(@user) %></small>
         <% end %>
       </div>
     </div>
@@ -53,6 +53,23 @@
   </div>
 
 </div>
+
+<% @user.articles.each do |article|%>
+  <div class="d-flex flex-row justify-content-around border py-2">
+    <div class="mx-2">
+      <%= image_tag( article.image, height: 50, width: 50, class: "" ) if article.image.attached? %>
+    </div>
+    <div class="d-flex flex-column">
+      <small><%= truncate article.title, length: 40 %></small>
+      <small class="mt-2"><%= truncate article.body, length: 40 %></small>
+    </div>
+    <div class="d-flex flex-column">
+      <p><small>Created at: <%= article.created_at.strftime("%b %d %Y") %></small></p>
+      <small><%= link_to 'Go to', article_path(article) %></small>
+    </div>
+  </div>
+<% end %>
+
 
 <div class="mt-3 ms-5">
   <small><%= link_to 'Back', categories_path %></small>
