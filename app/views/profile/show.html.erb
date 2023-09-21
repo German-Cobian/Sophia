@@ -40,6 +40,17 @@
         <% if @user == current_user %>
           <small><%= link_to "Edit Profile", new_profile_path(@user) %></small>
         <% end %>
+        <% if @user != current_user %>
+          <%= form_tag followings_path, method: :post do %>
+            <%= hidden_field_tag :following_user_id, @user.id %>
+            <%= hidden_field_tag :user_id, current_user.id %>
+            <%= submit_tag "Follow" %>
+          <% end %>
+          <%= form_tag following_path(current_user.followings.find_by(following_user_id: @user.id)), method: :delete do %>
+            <%= hidden_field_tag :user_id, current_user.id %>
+            <%= submit_tag "Unfollow" %>
+          <% end %>
+        <% end %>
       </div>
     </div>
 
