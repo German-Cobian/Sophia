@@ -14,6 +14,6 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :create, :edit, :update, :destroy]
   end
 
-  resources :followings, only: [:create, :destroy]
+  resources :followings, only: [:index, :create, :destroy]
 
 end

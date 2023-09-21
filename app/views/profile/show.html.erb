@@ -19,7 +19,7 @@
         <div class="d-flex flex-row justify-content-start mt-2">
           <div class="me-3">
             <span><%= image_tag "balloon.jpg", size: "20x20", class: "me-1" %></span>
-            <span><small><%= @user.date_of_birth %></small></span>
+            <span><small><%= @user.date_of_birth.strftime("%b %d %Y") %></small></span>
           </div>
           <div class="me-3">
             <span><%= image_tag "location.jpg", size: "20x20", class: "me-1" %></span>
@@ -38,17 +38,23 @@
       </div>
       <div class="d-flex flex-row justify-content-end mt-2 ms-5">
         <% if @user == current_user %>
-          <small><%= link_to "Edit Profile", new_profile_path(@user) %></small>
+          <div class="d-flex flex-column">
+            <small><%= link_to "Edit Profile", new_profile_path(@user) %></small>
+            <small class="pt-2"><%= link_to "Following", followings_path(user_id: current_user.id) %></small>
+          </div>
         <% end %>
         <% if @user != current_user %>
-          <%= form_tag followings_path, method: :post do %>
-            <%= hidden_field_tag :following_user_id, @user.id %>
-            <%= hidden_field_tag :user_id, current_user.id %>
-            <%= submit_tag "Follow" %>
-          <% end %>
-          <%= form_tag following_path(current_user.followings.find_by(following_user_id: @user.id)), method: :delete do %>
-            <%= hidden_field_tag :user_id, current_user.id %>
-            <%= submit_tag "Unfollow" %>
+          <% if @user.followers.include?(current_user) %>
+            <%= form_tag following_path(current_user.followings.find_by(following_user_id: @user.id)), method: :delete do %>
+              <%= hidden_field_tag :user_id, current_user.id %>
+              <%= submit_tag "Unfollow", class: "btn btn-outline-danger rounded-pill py-0" %>
+            <% end %>
+          <% else %>
+            <%= form_tag followings_path, method: :post do %>
+              <%= hidden_field_tag :following_user_id, @user.id %>
+              <%= hidden_field_tag :user_id, current_user.id %>
+              <%= submit_tag "Follow", class: "btn btn-outline-primary rounded-pill py-0" %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

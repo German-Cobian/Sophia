@@ -1,6 +1,11 @@
 class FollowingsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    user
+    @followings = user.followings.all
+  end
+
   def create
     following = user.followings.create(following_params)
   end
