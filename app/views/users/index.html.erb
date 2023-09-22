@@ -1,4 +1,4 @@
-<div class="border border-dark my-5 mx-5">
+<div class="border border-dark rounded my-5 mx-5">
   <div class="mx-5">
   
     <div class="my-3">
@@ -29,7 +29,7 @@
           <div class="d-flex flex-row pb-3">
             <% unless find_invitation_element(@event, user).nil? %>
               <p class="me-3"><small><strong>Status:</strong></small></p>
-              <span><p>Status: </p><%= find_invitation_element(@event, user).status %><span>
+              </p><small><%= find_invitation_element(@event, user).status %></small></p>
             <% else %>
               <p class="me-3"><small><strong>Status:</strong></small></p>
               <p><small>Not invited</small></p>
@@ -42,7 +42,7 @@
               <%= button_to "Invite", invitations_path(event_id: params[:event_id], user_id: user.id), class: "btn btn-outline-primary py-0" %>
             <% else %>
               <p class="me-3"><small><strong>Action:</strong></small>
-              <%= button_to "Cancel Invitation", invitation_path(id: find_invitation_element(@event, user).id,event_id: @event.id, user_id: user.id,  status: 'cancelled'), method: :delete, class: "btn btn-outline-danger py-0"  %>
+              <%= button_to "Cancel Invitation", class: "btn btn-outline-danger py-0" %>
             <% end %>
           </div>
 
