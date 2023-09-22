@@ -13,7 +13,10 @@ class User < ApplicationRecord
   has_many :reverse_followings, foreign_key: :following_user_id, class_name: "Following"
   has_many :followers, through: :reverse_followings, source: :user
   has_many :events
-  
+  has_many :invitations, class_name: 'Invitation', foreign_key: 'invitee_id'
+  has_many :sent_invitations, class_name: 'Invitation', foreign_key: 'user_id'
+  has_many :invited_events, through: :invitations, class_name: 'Event', source: :event
+
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
   
   before_save :set_display_name, if: -> { username.present? && display_name.blank? }

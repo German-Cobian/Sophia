@@ -29,11 +29,11 @@
         <% vote = current_user.votes.find_by(article: @article) %>
         <% if vote.nil? %>
           <%= button_to votes_path, params: { vote: {:article_id => @article.id } }, method: :post, class: "" do %>
-            <%= image_tag "Thumbs-up.jpg", width: "30", class: "" %>
+            <%= image_tag "heart.jpg", height: "15", class: "" %>
           <% end %>
         <% else %>
           <%= button_to vote_path(vote), method: :delete, class: "-5" do %>
-            <%= image_tag "Thumbs-down.jpg", width: "30", class: "" %>
+            <%= image_tag "heart-full.jpg", height: "15", class: "" %>
           <% end %>
         <% end %>
       <% end %>

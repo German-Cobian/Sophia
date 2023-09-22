@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root "categories#index"
   get :dashboard, to: "categories#index"
 
+  resources :users, only: [:index]
   resources :profile, only: [:show, :new, :update]
   resources :articles, only: [:index, :new, :show, :create, :update, :destroy]
   resources :categories, only: [:index, :show, :new, :create, :destroy]
