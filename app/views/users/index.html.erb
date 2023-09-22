@@ -16,16 +16,36 @@
       </div>
     </div>
     
-    <div class="d-flex flex-column align-items-center">
+    <div class="d-flex flex-column mx-5">
       <% @users_show.each do |user| %>
-        <div class="d-flex flex-row pb-3">
-          <div class="me-5">
-            <small class="pt-1"><strong><%= user.display_name %></strong></small>
-          </div>
+
+        <div class="d-flex flex-wrap justify-content-around pb-3">
           <div>
+            <small class="pt-1 me-3"><strong><%= user.display_name %></strong></small>
             <%= image_tag( user.avatar, height: 30, width: 30, class: "rounded-circle" ) if user.avatar.attached? %>
-            <small class="ms-2"><%= user.username %></small>
+            <small class="ms-1"><%= user.username %></small>
           </div>
+
+          <div class="d-flex flex-row pb-3">
+            <% unless find_invitation_element(@event, user).nil? %>
+              <p class="me-3"><small><strong>Status:</strong></small></p>
+              <span><p>Status: </p><%= find_invitation_element(@event, user).status %><span>
+            <% else %>
+              <p class="me-3"><small><strong>Status:</strong></small></p>
+              <p><small>Not invited</small></p>
+            <% end %>
+          </div>
+
+          <div class="d-flex flex-row pb-3">
+            <% if find_invitation_element(@event, user).nil? %>
+              <p class="me-3"><small><strong>Action:</strong></small>
+              <%= button_to "Invite", invitations_path(event_id: params[:event_id], user_id: user.id), class: "btn btn-outline-primary py-0" %>
+            <% else %>
+              <p class="me-3"><small><strong>Action:</strong></small>
+              <%= button_to "Cancel Invitation", invitation_path(id: find_invitation_element(@event, user).id,event_id: @event.id, user_id: user.id,  status: 'cancelled'), method: :delete, class: "btn btn-outline-danger py-0"  %>
+            <% end %>
+          </div>
+
         </div>
       <% end %>
     </div>
