@@ -1,0 +1,27 @@
+<div class="border border-dark rounded py-3 px-5">
+  
+  <%= form_with(model: event) do |f| %>
+    <div class="mb-3">
+      <b><%= f.label :title, class: "form-label" %></b><br />
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <b class="pe-4"><%= f.label :description, class: "form-label" %></b><br />
+      <%= f.text_area :description, size: "100x4", class: "form-control" %>
+    </div>
+    <div class="d-flex flex-wrap justify-content-between mb-4">
+      <div class="d-flex flex-row justify-content-end mt-3">
+        <b class="pe-4"><%= f.label "Event Date", class: "form-label" %></b>
+        <%= f.date_field :date, class: "form-control-sm" %>
+      </div>
+      <div class="d-flex flex-row mt-3">
+        <b class="pe-4"><%= f.label :image, class: "form-label" %></b>
+        <%= f.file_field :image, class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-start mb-3">
+      <%= f.submit "Submit Event", class: "btn btn-outline-primary py-0" %>
+    </div>
+  <% end %>
+
+</div>

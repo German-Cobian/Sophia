@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   end
 
   resources :followings, only: [:index, :create, :destroy]
-
+  resources :events, only: [:index, :show, :new, :create, :destroy]
 end
