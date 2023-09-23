@@ -1,6 +1,6 @@
 class InvitationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :host_user, only: %i[create update]
+  before_action :host_user, only: %i[create update destroy]
 
   def create
     host = User.find(current_user.id)
@@ -10,7 +10,6 @@ class InvitationsController < ApplicationController
     @invitation.save
     respond_to do |format|
       format.html { redirect_to event }
-      format.js
     end
   end
 
@@ -20,10 +19,23 @@ class InvitationsController < ApplicationController
     @reservation.update_attribute(:status, params[:status])
     respond_to do |format|
       format.html { redirect_to @event }
-      format.js
-      format.json { render partial: 'invitations/show' }
     end
   end
+
+  def destroy
+    @invitation = Invitation.find(params[:id])
+    @event = Event.find(params[:event_id])
+
+    if @invitation.user_id == current_user.id
+      @invitation.destroy
+    else
+      @invitation.update_attribute(:status, params[:status])
+    end
+    respond_to do |format|
+      format.html { redirect_to @event }
+    end
+  end
+
 
   private
 
