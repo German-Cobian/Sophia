@@ -7,6 +7,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @reservation = @event.invitations.find_by(event_id: @event.id, invitee_id: current_user.id) if current_user
+    
   end
 
   def new

@@ -25,13 +25,21 @@
     </div>
 
     <% if current_user_is_host?(@event) %>
-        <%= button_to "Invite", users_path, params: {:event_id => @event.id}, method: :get, class: "btn btn-outline-primary py-0" %>
-    <% end %>
+      <%= button_to "Invite", users_path, params: {:event_id => @event.id}, method: :get, class: "btn btn-outline-primary py-0" %>
+    <% else %>
+      <% if accepted?(@reservation) %>
+        <%= button_to "Cancel enrollment", invitation_path(id: @reservation.id, event_id: @event.id, user_id: current_user.id,  status: 'cancelled'), method: :delete, class: "btn btn-outline-danger py-0" %>
+      <% else %>
+        <%= button_to "Enroll", invitation_path(event_id: @event.id, status: 'approved'), method: :patch, class: "btn btn-outline-primary py-0" %>
+      <% end %>
+    <% end %>  
   </div>
 </div>
 
-<%= form_tag event_path(id: @event.id), method: :delete do %>
-  <%= submit_tag "Cancel Event", class: "btn btn-outline-danger rounded-pill py-0 my-3 ms-5" %>
+<% if current_user_is_host?(@event) %>
+  <%= form_tag event_path(id: @event.id), method: :delete do %>
+    <%= submit_tag "Cancel Event", class: "btn btn-outline-danger rounded-pill py-0 my-3 ms-5" %>
+  <% end %>
 <% end %>
 
 <div class="ms-5">
