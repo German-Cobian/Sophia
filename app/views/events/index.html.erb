@@ -19,7 +19,7 @@
               <div class="me-3">
                   <span><%= image_tag "calendar.jpg", size: "20x20", class: "me-1" %></span>
                   <span><small><%= event.date.strftime("%b %d %Y") %></small></span>
-                </div>
+              </div>
             </div>
           </div>
       
@@ -41,6 +41,10 @@
   </div>
 
   <div class= "ms-4">
+    <div>
+      <%= link_to 'Your Events', calendars_path, class: "btn btn-outline-primary py-0" %>
+    </div>
+
     <div>
       <small><%= link_to 'Back', categories_path %></small>
     </div>

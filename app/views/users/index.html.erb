@@ -42,7 +42,7 @@
               <%= button_to "Invite", invitations_path(event_id: params[:event_id], user_id: user.id), class: "btn btn-outline-primary py-0" %>
             <% else %>
               <p class="me-3"><small><strong>Action:</strong></small>
-              <%= button_to "Cancel Invitation", class: "btn btn-outline-danger py-0" %>
+              <%= button_to "Cancel Invitation", invitation_path(id: find_invitation_element(@event, user).id, event_id: @event.id, user_id: user.id,  status: 'cancelled'), method: :delete, class: "btn btn-outline-danger py-0" %>
             <% end %>
           </div>
 
