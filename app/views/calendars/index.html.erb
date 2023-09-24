@@ -10,13 +10,14 @@
             <span><%= image_tag "calendar.jpg", size: "20x20", class: "me-1" %></span>
             <span><small><%= event.date.strftime("%b %d %Y") %></small></span>
           </div>
+          <small><%= link_to "Go To", users_path(event_id: event.id) %></small>
         </div>
       </div>
     <% end %>
   </div>
 
   <div class="ms-5">
-    <small><%= link_to 'Back', events_path %></small>
+    <small><%= link_to 'All Events', events_path %></small>
   </div>
 </div>
 
@@ -72,6 +73,5 @@
         <% end %>
       <% end %>
     </div>
+
 </div>
-
-
