@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   root "categories#index"
   get :dashboard, to: "categories#index"
 
-  resources :users, only: [:index]
   resources :profile, only: [:show, :new, :update]
   resources :articles, only: [:index, :new, :show, :create, :update, :destroy]
   resources :categories, only: [:index, :show, :new, :create, :destroy]
@@ -18,5 +17,6 @@ Rails.application.routes.draw do
   resources :followings, only: [:index, :create, :destroy]
   resources :events, only: [:index, :show, :new, :create, :destroy]
   resources :invitations, only: %i[create update destroy]
-  resources :calendars, only: [:index]
+  resources :guestlists, only: [:index]
+  resources :hostings, only: [:index]
 end

@@ -9,8 +9,10 @@
           <div class="me-3">
             <span><%= image_tag "calendar.jpg", size: "20x20", class: "me-1" %></span>
             <span><small><%= event.date.strftime("%b %d %Y") %></small></span>
+            <%= event.id %>
+            <%= event.invitations %>
           </div>
-          <small><%= link_to "Go To", users_path(event_id: event.id) %></small>
+          <small><%= link_to "Go To", guestlists_path(event_id: event.id) %></small>
         </div>
       </div>
     <% end %>

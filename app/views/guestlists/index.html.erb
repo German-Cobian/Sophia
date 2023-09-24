@@ -1,7 +1,7 @@
 <div class="border border-dark rounded my-5 mx-5">
   <div class="mx-5">
   
-    <div class="my-3">
+    <div class="mt-3">
       <h4 class="mb-3">Guest List</h4>
 
       <div class="d-flex flex-row">
@@ -15,7 +15,15 @@
         </div>
       </div>
     </div>
-    
+
+    <div class="d-flex flex-row justify-content-end mb-3">
+      <% if current_user_is_host?(@event) %>
+        <%= form_tag event_path(id: @event.id), method: :delete do %>
+          <%= submit_tag "Cancel Event", class: "btn btn-outline-danger rounded-pill py-0 my-3 ms-5" %>
+        <% end %>
+      <% end %>
+    </div>
+
     <div class="d-flex flex-column mx-5">
       <% @users_show.each do |user| %>
 
@@ -51,7 +59,7 @@
     </div>
 
     <div class="d-flex flex-row justify-content-end my-4">
-      <small><%= link_to 'Back to Hosted Events', calendars_path %></small>
+      <small><%= link_to 'Back to Hosted Events', hostings_path %></small>
     </div>
    
   </div>

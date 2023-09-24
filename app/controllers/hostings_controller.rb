@@ -1,4 +1,4 @@
-class CalendarsController < ApplicationController
+class HostingsController < ApplicationController
   before_action :authenticate_user!
 
   def index

@@ -7,8 +7,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @reservation = @event.invitations.find_by(event_id: @event.id, invitee_id: current_user.id) if current_user
-    
+    @reservation = @event.invitations.find_by(event_id: @event.id, invitee_id: current_user.id) if current_user  
   end
 
   def new
@@ -18,25 +17,15 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
 
-    if @event.save
-      flash[:success] = 'Event created!'
-      redirect_to users_path(event_id: @event.id)
-    else
-      flash[:alert] = 'Some error'
-      render 'new'
-    end
+    @event.save
+    redirect_to guestlists_path(event_id: @event.id)
   end
 
   def destroy
     @event = Event.find(params[:id])
 
-    if @event.destroy
-      flash[:success] = 'Event destroyed!'
-      redirect_to @event
-    else
-      flash[:alert] = 'Some error'
-      render 'new'
-    end
+    @event.destroy
+    redirect_to @event
   end
 
   private
