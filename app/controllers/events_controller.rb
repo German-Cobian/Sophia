@@ -3,6 +3,9 @@ class EventsController < ApplicationController
  
   def index
     @events = Event.all
+
+    @upcoming_events = @events.upcoming.order(:date)
+    @past_events = @events.past.order(:date)
   end
 
   def show

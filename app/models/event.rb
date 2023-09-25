@@ -5,4 +5,6 @@ class Event < ApplicationRecord
   has_many :invitations, foreign_key: 'event_id', dependent: :destroy
   has_many :attendees, through: :invitations, source: :user
 
+  scope :past, -> { where('date < ?', Date.today) }
+  scope :upcoming, -> { where('date >= ?', Date.today) }
 end
