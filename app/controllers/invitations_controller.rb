@@ -8,9 +8,6 @@ class InvitationsController < ApplicationController
     user = User.find(params[:user_id])
     @invitation = Invitation.new(event_id: event.id, user_id: host.id, invitee_id: user.id)
     @invitation.save
-    respond_to do |format|
-      format.html { redirect_to event }
-    end
   end
 
   def update
@@ -30,9 +27,6 @@ class InvitationsController < ApplicationController
       @invitation.destroy
     else
       @invitation.update_attribute(:status, params[:status])
-    end
-    respond_to do |format|
-      format.html { redirect_to @event }
     end
   end
 

@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :invitations, only: %i[create update destroy]
   resources :guestlists, only: [:index]
   resources :hostings, only: [:index]
+  resources :participations, only: [:index]
 end
