@@ -9,9 +9,15 @@
         <div class="ms-3">
           <p><strong><%= @event.title %></strong></p>
           <div class="me-3">
+            <div>
               <span><%= image_tag "calendar.jpg", size: "20x20", class: "me-1" %></span>
               <span><small><%= @event.date.strftime("%b %d %Y") %></small></span>
             </div>
+            <div>
+              <span><%= image_tag "location.jpg", size: "20x20", class: "me-1" %></span>
+              <span><small><%= @event.location %></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

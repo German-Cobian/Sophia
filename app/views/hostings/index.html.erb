@@ -7,7 +7,7 @@
       <% else %>
         <%= image_tag "Default-img.jpeg", size: "150x150", class: "rounded-circle me-5" %>
       <% end %>
-      <div class="d-flex flex-row justify-content-start mt-3">
+      <div class="d-flex flex-row justify-content-start mt-2">
         <p class="me-2"><small><strong><%= @user.display_name %></strong></small><p>
         <p><small>@<%= @user.username %></small><p>
       </div>
@@ -19,11 +19,15 @@
     <% @user_hosted_events.each do |event| %>
       <div class="d-flex flex-row mb-5">
         <%= image_tag( event.image, height: 50, width: 50, class: "" ) if event.image.attached? %>
-        <div class="ms-1">
+        <div class="ms-3">
           <small><strong><%= event.title %></strong></small>
           <div class="me-3">
             <span><%= image_tag "calendar.jpg", size: "20x20", class: "me-1" %></span>
             <span><small><%= event.date.strftime("%b %d %Y") %></small></span>
+          </div>
+          <div>
+            <span><%= image_tag "location.jpg", size: "20x20", class: "me-1" %></span>
+            <span><small><%= event.location %></span>
           </div>
           <small><%= link_to "Go To", guestlists_path(event_id: event.id) %></small>
         </div>
