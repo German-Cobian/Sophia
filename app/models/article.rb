@@ -26,4 +26,8 @@ class Article < ApplicationRecord
       SQL
     )
   }
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id title body created_at category_id user_id]
+  end
 end

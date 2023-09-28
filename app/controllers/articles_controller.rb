@@ -1,7 +1,10 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: %i[create edit update destroy]
 
-  def index; end
+  def index
+    @q = Article.ransack(params[:q])
+    @articles = @q.result(distinct: true)
+  end
 
   def new
     @article = Article.new
