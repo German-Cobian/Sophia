@@ -2,7 +2,7 @@
 <h5>Search Either by Title or Text Content</h5>
   <%= search_form_for @q do |f| %>
     <div class="col-6 border rounded border-dark py-3 px-3">
-    <%= f.label :title_cont, class: "mb-3" %>
+      <%= f.label :title_cont, class: "mb-3" %>
       <div class="d-flex flex-row justify-content_end">
         <%= f.search_field :title_i_cont_any, placeholder: "Search...", class: "form-control me-5" %>
       </div>
