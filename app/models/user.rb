@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :comments
 
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
-  
+
   before_save :set_display_name, if: -> { username.present? && display_name.blank? }
 
   def set_display_name
@@ -23,6 +23,4 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :user
   end
-
-
 end

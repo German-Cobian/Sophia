@@ -27,7 +27,7 @@ class Article < ApplicationRecord
     )
   }
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["id", "title", "body", "created_at", "category_id", "user_id"]
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id title body created_at category_id user_id]
   end
 end

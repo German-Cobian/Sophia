@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :invitation do
-    status { "MyString" }
+    status { 'MyString' }
     user { nil }
     event { nil }
   end
