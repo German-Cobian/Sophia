@@ -3,7 +3,7 @@
     <p class="me-3"><small><strong>Comment:</strong></small></p>
     <div class="d-flex flex-row">
 
-      <%= f.text_area :body, placeholder: 'Your response here', size: "100x3", class:'' %>
+      <%= f.text_area :body, placeholder: 'Your response here', size: "100x3", class:'rounded' %>
       <% if !parent.nil? %>
         <%= f.hidden_field :parent_id, value: parent.id %>    
       <% end %>
