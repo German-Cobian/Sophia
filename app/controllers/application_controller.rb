@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  
   before_action :redirect_to_profile_form, if: -> { user_signed_in? && current_user.username.blank? }
 
   protected
