@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_19_180930) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_21_202233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_180930) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "followings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "following_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["following_user_id"], name: "index_followings_on_following_user_id"
+    t.index ["user_id", "following_user_id"], name: "index_followings_on_user_id_and_following_user_id", unique: true
+    t.index ["user_id"], name: "index_followings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -86,6 +96,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_180930) do
     t.string "city"
     t.string "country"
     t.text "bio"
+    t.integer "following_count", default: 0, null: false
+    t.integer "follower_count", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -106,6 +118,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_180930) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
+  add_foreign_key "followings", "users"
+  add_foreign_key "followings", "users", column: "following_user_id"
   add_foreign_key "votes", "articles"
   add_foreign_key "votes", "users"
 end

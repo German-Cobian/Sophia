@@ -32,7 +32,7 @@
       </div>
       <div class="mx-5 my-3">
         <b class="pe-4"><%= f.label :bio, class: "form-label" %></b>
-        <%= f.text_field :bio, class: "form-control" %>
+        <%= f.text_area :bio, size: "100x4", class: "form-control" %>
       </div>
       <div class="mx-5 my-3">
         <%= f.submit "set user info", class: "btn btn-outline-primary rounded-pill py-0" %>
@@ -42,5 +42,3 @@
 
   </div>
 </div>
-
-

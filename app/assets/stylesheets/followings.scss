@@ -1,0 +1,20 @@
+.f-cont {
+  width: 50%;
+  margin-left: 5%;
+}
+
+.flink {
+  margin-left: 5%;
+}
+
+@media screen and (max-width: 1000px) {
+  .f-cont {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .flink {
+    margin-left: 10%;
+  }
+}
