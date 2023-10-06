@@ -38,9 +38,9 @@
     <% else %>
       <% if @reservation %>
         <% if accepted?(@reservation) %>
-          <%= button_to "Cancel Enrollment", invitation_path(id: @reservation.id, event_id: @event.id, user_id: current_user.id,  status: 'cancelled'), method: :delete, class: "btn btn-outline-danger py-0" %>
+          <%= button_to "Cancel Enrollment", invitation_path(id: @reservation.id, event_id: @event.id, user_id: current_user.id,  status: 'cancelled'), method: :delete, onclick: "refreshPage()", class: "btn btn-outline-danger py-0" %>
         <% else %>
-          <%= button_to "Enroll", invitation_path(event_id: @event.id, status: 'approved'), method: :patch, class: "btn btn-outline-primary py-0" %>
+          <%= button_to "Enroll", invitation_path(event_id: @event.id, status: 'approved'), method: :patch, onclick: "refreshPage()", class: "btn btn-outline-primary py-0" %>
         <% end %>
         <% else %>
         <p>You have not been invited to this event</p>
@@ -52,3 +52,9 @@
 <div class="mt-3 ms-5">
   <small><%= link_to 'All Events', events_path %></small>
 </div>
+
+<script>
+  function refreshPage() {
+    window.location.reload();
+  }
+</script>
