@@ -1,0 +1,19 @@
+<div class="dropdown">
+  <button class="btn btn-outline-dark dropdown-toggle txt-e" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Navigate Events
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div>
+      <small><%= link_to('Create an Event', new_event_path, class: "link lnk-h ms-1") %></small>
+    </div>
+    <div>
+      <small><%= link_to('My Hosted Events', hostings_path, class: "link lnk-h ms-1") %></small>
+    </div>
+    <div>
+      <small><%= link_to('My Events Participation', participations_path, class: "link lnk-h ms-1") %></small>
+    </div>
+    <div>
+      <small><%= link_to('All Events', events_path, class: "link lnk-h ms-1") %></small>
+    </div>
+  </div>
+</div>

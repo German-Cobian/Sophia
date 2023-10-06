@@ -2,7 +2,7 @@
   <h4 class="ms-5"><b><%= @category.topic %></b></h4>
   <div class="d-flex flex-wrap justify-content-start mx-5">
     <% @category.articles.order('created_at DESC').each do |article|%>
-      <div class="cat3-container d-flex flex-column flex-lg-row border mt-3 ml-2">
+      <div class="cat3-container d-flex flex-column flex-lg-row border border-dark rounded mt-3 ml-2">
         <div class="img-cat">
           <%= image_tag(article.image, height: 220, width: 220, class: "me-5" ) %> 
         </div>

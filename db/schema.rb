@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_21_202233) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_22_181146) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_202233) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "date"
+    t.string "location"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
   create_table "followings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "following_user_id", null: false
@@ -79,6 +90,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_202233) do
     t.index ["following_user_id"], name: "index_followings_on_following_user_id"
     t.index ["user_id", "following_user_id"], name: "index_followings_on_user_id_and_following_user_id", unique: true
     t.index ["user_id"], name: "index_followings_on_user_id"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.string "status", default: "no response"
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "invitee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_invitations_on_event_id"
+    t.index ["invitee_id"], name: "index_invitations_on_invitee_id"
+    t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -118,8 +141,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_202233) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
+  add_foreign_key "events", "users"
   add_foreign_key "followings", "users"
   add_foreign_key "followings", "users", column: "following_user_id"
+  add_foreign_key "invitations", "events"
+  add_foreign_key "invitations", "users"
+  add_foreign_key "invitations", "users", column: "invitee_id"
   add_foreign_key "votes", "articles"
   add_foreign_key "votes", "users"
 end

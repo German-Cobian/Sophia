@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = current_user.articles.find(params[:id])
     @article.destroy
-    redirect_to articles_path, notice: 'Article was destroyed.'
+    redirect_to categories_path, notice: 'Article was destroyed.'
   end
 
   private

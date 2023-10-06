@@ -47,13 +47,13 @@
           <% if @user.followers.include?(current_user) %>
             <%= form_tag following_path(current_user.followings.find_by(following_user_id: @user.id)), method: :delete do %>
               <%= hidden_field_tag :user_id, current_user.id %>
-              <%= submit_tag "Unfollow", class: "btn btn-outline-danger rounded-pill py-0" %>
+              <%= submit_tag "Unfollow", onclick: "refreshPage()", class: "btn btn-outline-danger rounded-pill py-0" %>
             <% end %>
           <% else %>
             <%= form_tag followings_path, method: :post do %>
               <%= hidden_field_tag :following_user_id, @user.id %>
               <%= hidden_field_tag :user_id, current_user.id %>
-              <%= submit_tag "Follow", class: "btn btn-outline-primary rounded-pill py-0" %>
+              <%= submit_tag "Follow", onclick: "refreshPage()", class: "btn btn-outline-primary rounded-pill py-0" %>
             <% end %>
           <% end %>
         <% end %>
@@ -91,3 +91,9 @@
 <div class="mt-3 ms-5">
   <small><%= link_to 'Back', categories_path %></small>
 </div>
+
+<script>
+  function refreshPage() {
+    location.reload();
+  }
+</script>

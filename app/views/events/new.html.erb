@@ -1,0 +1,14 @@
+<div class="d-flex flex-row justify-content-center">
+  <div class="d-flex flex-column pt-3">
+    <div class= "my-3 d-flex flex_row justify-content-between">
+      <h4>Create New Event</h4>
+      <%= render '/shared/eventnav' %>
+    </div>
+    <div>
+      <%= render '/events/form', event: @event %>
+    </div>
+    <div class="mt-3">
+      <small><%= link_to 'Back', events_path %></small>
+    </div>
+  </div>
+</div>

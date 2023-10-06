@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :followings, only: [:index, :create, :destroy]
-
+  resources :events, only: [:index, :show, :new, :create, :destroy]
+  resources :invitations, only: %i[create update destroy]
+  resources :guestlists, only: [:index]
+  resources :hostings, only: [:index]
+  resources :participations, only: [:index]
 end

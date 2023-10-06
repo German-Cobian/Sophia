@@ -6,8 +6,8 @@
 
   <div class="d-flex flex-row justify-content-between mb-2">
     <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle txt-n" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Philosophy topics
+      <button class="btn btn-outline-secondary dropdown-toggle txt-n" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Navigate Sophia
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <div class="me-5">
@@ -17,8 +17,8 @@
           <%= link_to category.topic, category, class: "dropdown-item txt-drop me-4" %>
         <% end %>
         <div class="me-5">
-  
           <small><%= link_to("Search", articles_path, class: "link lnk-h ms-3") %></small>
+          <small><%= link_to("Events", events_path, class: "link lnk-h ms-3") %></small>
         </div>
       </div>
     </div>
