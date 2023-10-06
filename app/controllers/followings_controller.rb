@@ -7,7 +7,7 @@ class FollowingsController < ApplicationController
   end
 
   def create
-    following = user.followings.create(following_params)
+    user.followings.create(following_params)
   end
 
   def destroy

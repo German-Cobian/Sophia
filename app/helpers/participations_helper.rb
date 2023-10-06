@@ -1,5 +1,4 @@
 module ParticipationsHelper
-
   def attended_past
     @user.invitations.attended_past.includes(:event)
   end

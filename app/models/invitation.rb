@@ -6,5 +6,4 @@ class Invitation < ApplicationRecord
   scope :attended_past, -> { joins(:event).where('status = ? AND date < ?', 'approved', Time.zone.now) }
   scope :enrolled_future, -> { joins(:event).where('status = ? AND date > ?', 'approved', Time.zone.now) }
   scope :pending_accept, -> { joins(:event).where('status = ? AND date > ?', 'no response', Time.zone.now) }
-
 end

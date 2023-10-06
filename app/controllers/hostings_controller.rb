@@ -4,7 +4,7 @@ class HostingsController < ApplicationController
   def index
     @user = current_user
     @user_hosted_events = @user.events.all.order(created_at: :desc)
-    @invitations = Invitation.where(user_id: @user.id).includes(:event).order("events.id DESC")
+    @invitations = Invitation.where(user_id: @user.id).includes(:event).order('events.id DESC')
   end
 
   private
