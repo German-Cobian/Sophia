@@ -1,0 +1,99 @@
+<div class= "my-3 mx-5 d-flex flex_row justify-content-end">
+  <%= render '/shared/eventnav' %>
+</div>
+
+<div class=" border border-dark rounded mb-5 mx-3 py-3">
+
+  <div class="d-flex flex-row justify-content-between mx-5" >
+    <div class="d-flex flex-column p-cont1">
+      <% if @user.avatar.present? %>
+        <%= image_tag @user.avatar, size: "50x50", class: "rounded-circle me-5" %>
+      <% else %>
+        <%= image_tag "Default-img.jpeg", size: "150x150", class: "rounded-circle me-5" %>
+      <% end %>
+      <div class="d-flex flex-row justify-content-start mt-2">
+        <p class="me-2"><small><strong><%= @user.display_name %></strong></small><p>
+        <p><small>@<%= @user.username %></small><p>
+      </div>
+    </div>
+    <h5>My Hosted Events: <%= @user.events.count %></h5>
+  </div>
+
+  <div class="d-flex flex-wrap justify-content-around">
+    <% @user_hosted_events.each do |event| %>
+      <div class="d-flex flex-row mb-1">
+        <%= image_tag( event.image, height: 50, width: 50, class: "" ) if event.image.attached? %>
+        <div class="ms-3">
+          <small><strong><%= event.title %></strong></small>
+          <div class="me-3">
+            <span><%= image_tag "calendar.jpg", size: "20x20", class: "me-1" %></span>
+            <span><small><%= event.date.strftime("%b %d %Y") %></small></span>
+          </div>
+          <div>
+            <span><%= image_tag "location.jpg", size: "20x20", class: "me-1" %></span>
+            <span><small><%= event.location %></span>
+          </div>
+          <small><%= link_to "Go To", guestlists_path(event_id: event.id) %></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="ms-5">
+    <small><%= link_to 'All Events', events_path %></small>
+  </div>
+
+</div>
+
+<div class="d-flex flex-wrap justify-content-around border border-dark rounded my-5 mx-3 py-3">
+
+    <div>
+      <h5 class="mb-4">Invitations Sent:</h5>
+      <% @invitations.each do |invitation| %>
+        <div class="mb-3">
+          <%= image_tag( invitation.event.image, height: 50, width: 50, class: "" ) if invitation.event.image.attached? %>
+          <small><%= invitation.event.title %></small>
+          <div>
+            <small class="pt-1 me-2"><strong><%= invitation.invitee.display_name %></strong></small>
+            <%= image_tag( invitation.invitee.avatar, height: 25, width: 25, class: "rounded-circle" ) %>
+            <small><%= invitation.invitee.username %></small>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div>
+      <h5 class="mb-4">Commited to Attend: </h5>
+      <% @invitations.each do |invitation| %>   
+        <% if accepted?(invitation) %>
+          <div class="mb-3">
+            <%= image_tag( invitation.event.image, height: 50, width: 50, class: "" ) if invitation.event.image.attached? %>
+            <small><%= invitation.event.title %></small>
+            <div>
+              <small class="pt-1 me-2"><strong><%= invitation.invitee.display_name %></strong></small>
+              <%= image_tag( invitation.invitee.avatar, height: 25, width: 25, class: "rounded-circle" ) %>
+              <small><%= invitation.invitee.username %></small>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <h5 class="mb-4">Declined to Attend: </h5>
+      <% @invitations.each do |invitation| %>   
+        <% if declined?(invitation) %>
+          <div class="mb-3">
+          <%= image_tag( invitation.event.image, height: 50, width: 50, class: "" ) if invitation.event.image.attached? %>
+            <small><%= invitation.event.title %></small>
+            <div>
+              <small class="pt-1 me-2"><strong><%= invitation.invitee.display_name %></strong></small>
+              <%= image_tag( invitation.invitee.avatar, height: 25, width: 25, class: "rounded-circle" ) %>
+              <small><%= invitation.invitee.username %></small>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+</div>

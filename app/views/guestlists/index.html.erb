@@ -1,0 +1,83 @@
+<div class= "my-3 mx-5 d-flex flex_row justify-content-end">
+  <%= render '/shared/eventnav' %>
+</div>
+
+<div class="border border-dark rounded mb-5 mx-5">
+  <div class="mx-5">
+  
+    <div class="mt-3">
+      <h4 class="mb-3">Guest List</h4>
+
+      <div class="d-flex flex-row">
+        <%= image_tag( @event.image, height: 100, width: 100, class: "" ) if @event.image.attached? %>
+        <div class="ms-3">
+          <p><strong><%= @event.title %></strong></p>
+          <div class="me-3">
+            <div>
+              <span><%= image_tag "calendar.jpg", size: "20x20", class: "me-1" %></span>
+              <span><small><%= @event.date.strftime("%b %d %Y") %></small></span>
+            </div>
+            <div>
+              <span><%= image_tag "location.jpg", size: "20x20", class: "me-1" %></span>
+              <span><small><%= @event.location %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-end mb-3">
+      <% if current_user_is_host?(@event) %>
+        <%= form_tag event_path(id: @event.id), method: :delete do %>
+          <%= submit_tag "Cancel Event", class: "btn btn-outline-danger rounded-pill py-0 my-3 ms-5" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="d-flex flex-column mx-5">
+      <% @users_show.each do |user| %>
+
+        <div class="d-flex flex-wrap justify-content-around pb-3">
+          <div>
+            <small class="pt-1 me-3"><strong><%= user.display_name %></strong></small>
+            <%= image_tag( user.avatar, height: 30, width: 30, class: "rounded-circle" ) if user.avatar.attached? %>
+            <small class="ms-1"><%= user.username %></small>
+          </div>
+
+          <div class="d-flex flex-row pb-3">
+            <% unless find_invitation_element(@event, user).nil? %>
+              <p class="me-3"><small><strong>Status:</strong></small></p>
+              </p><small><%= find_invitation_element(@event, user).status %></small></p>
+            <% else %>
+              <p class="me-3"><small><strong>Status:</strong></small></p>
+              <p><small>Not invited</small></p>
+            <% end %>
+          </div>
+
+          <div class="d-flex flex-row pb-3">
+            <% if find_invitation_element(@event, user).nil? %>
+              <p class="me-3"><small><strong>Action:</strong></small>
+              <%= button_to "Invite", invitations_path(event_id: params[:event_id], user_id: user.id), onclick: "refreshPage()", class: "btn btn-outline-primary py-0" %>
+            <% else %>
+              <p class="me-3"><small><strong>Action:</strong></small>
+              <%= button_to "Cancel Invitation", invitation_path(id: find_invitation_element(@event, user).id, event_id: @event.id, user_id: user.id,  status: 'cancelled'), method: :delete, onclick: "refreshPage()", class: "btn btn-outline-danger py-0" %>
+            <% end %>
+          </div>
+
+        </div>
+      <% end %>
+
+    </div>
+
+    <div class="d-flex flex-row justify-content-end my-4">
+      <small><%= link_to 'Back to Hosted Events', hostings_path %></small>
+    </div>
+   
+  </div>
+</div>
+
+<script>
+  function refreshPage() {
+    window.location.reload();
+  }
+</script>

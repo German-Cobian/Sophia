@@ -1,0 +1,99 @@
+<div class="d-flex flex-wrap justify-content-start border rounded border-dark my-5 mx-5 py-5 px-5">
+  
+  <div class="d-flex flex-column p-cont1">
+    <% if @user.avatar.present? %>
+      <%= image_tag @user.avatar, size: "150x150", class: "rounded-circle me-5" %>
+    <% else %>
+      <%= image_tag "Default-img.jpeg", size: "150x150", class: "rounded-circle me-5" %>
+    <% end %>
+    <div class="d-flex flex-row justify-content-start mt-3">
+      <p class="me-2"><small><strong><%= @user.display_name %></strong></small><p>
+      <p><small>@<%= @user.username %></small><p>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column p-cont2">
+
+    <div class="d-flex flex-row justify-content-between">
+      <div>
+        <div class="d-flex flex-row justify-content-start mt-2">
+          <div class="me-3">
+            <span><%= image_tag "balloon.jpg", size: "20x20", class: "me-1" %></span>
+            <span><small><%= @user.date_of_birth.strftime("%b %d %Y") %></small></span>
+          </div>
+          <div class="me-3">
+            <span><%= image_tag "location.jpg", size: "20x20", class: "me-1" %></span>
+            <span><small><%= @user.city %></small></span>
+            <span><small><%= @user.country %></small></span>
+          </div>
+          <div class="me-3">
+            <span><%= image_tag "calendar.jpg", size: "20x20", class: "me-1" %></span>
+            <span><small><%= @user.created_at.strftime("%b %d %Y") %></small></span>
+          </div>
+        </div>
+        <div class="d-flex flex-row justify-content-start mt-2">
+          <div class="me-4"><p><small>Following: <%= @user.following_count %></small></p></div>
+          <div class="me-4"><p><small>Followers: <%= @user.follower_count %></small></p></div>
+        </div>
+      </div>
+      <div class="d-flex flex-row justify-content-end mt-2 ms-5">
+        <% if @user == current_user %>
+          <div class="d-flex flex-column">
+            <small><%= link_to "Edit Profile", new_profile_path(@user) %></small>
+            <small class="pt-2"><%= link_to "Following", followings_path(user_id: current_user.id) %></small>
+          </div>
+        <% end %>
+        <% if @user != current_user %>
+          <% if @user.followers.include?(current_user) %>
+            <%= form_tag following_path(current_user.followings.find_by(following_user_id: @user.id)), method: :delete do %>
+              <%= hidden_field_tag :user_id, current_user.id %>
+              <%= submit_tag "Unfollow", onclick: "refreshPage()", class: "btn btn-outline-danger rounded-pill py-0" %>
+            <% end %>
+          <% else %>
+            <%= form_tag followings_path, method: :post do %>
+              <%= hidden_field_tag :following_user_id, @user.id %>
+              <%= hidden_field_tag :user_id, current_user.id %>
+              <%= submit_tag "Follow", onclick: "refreshPage()", class: "btn btn-outline-primary rounded-pill py-0" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div>
+      <h6 class="mt-5">Bio:</h6>
+      <div class="border rounded border-dark ps-5 pt-2">
+        <p><%= @user.bio %><p>
+      </div>
+    </div>
+    
+  </div>
+
+</div>
+
+<% @user.articles.each do |article|%>
+  <div class="d-flex flex-row justify-content-around border py-2">
+    <div class="mx-2">
+      <%= image_tag( article.image, height: 50, width: 50, class: "" ) if article.image.attached? %>
+    </div>
+    <div class="d-flex flex-column">
+      <small><%= truncate article.title, length: 40 %></small>
+      <small class="mt-2"><%= truncate article.body, length: 40 %></small>
+    </div>
+    <div class="d-flex flex-column">
+      <p><small>Created at: <%= article.created_at.strftime("%b %d %Y") %></small></p>
+      <small><%= link_to 'Go to', article_path(article) %></small>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="mt-3 ms-5">
+  <small><%= link_to 'Back', categories_path %></small>
+</div>
+
+<script>
+  function refreshPage() {
+    location.reload();
+  }
+</script>

@@ -51,6 +51,9 @@ gem 'bootsnap', require: false
 # Authentication
 gem 'devise'
 
+# Authorization
+gem 'cancancan', '~> 3.5'
+
 # Ruby linters
 gem 'rubocop', '>= 1.0', '< 2.0'
 
@@ -85,3 +88,6 @@ end
 gem 'cssbundling-rails', '~> 1.2'
 
 gem 'jsbundling-rails', '~> 1.1'
+
+# For Search functionality
+gem 'ransack', '~> 4.0'

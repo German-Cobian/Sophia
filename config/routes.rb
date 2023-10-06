@@ -5,12 +5,19 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "categories#index"
   get :dashboard, to: "categories#index"
- 
-  resources :usernames, only: [:new, :update]
-  resources :articles, only: [:index, :new, :show, :create]
-  resources :categories, only: [:index, :show]
+
+  resources :profile, only: [:show, :new, :update]
+  resources :articles, only: [:index, :new, :show, :create, :update, :destroy]
+  resources :categories, only: [:index, :show, :new, :create, :destroy]
   resources :votes, only: [:create, :destroy]
   resources :articles do
-    resources :comments, only: [:index, :create]
+    resources :comments, only: [:index, :create, :edit, :update, :destroy]
   end
+
+  resources :followings, only: [:index, :create, :destroy]
+  resources :events, only: [:index, :show, :new, :create, :destroy]
+  resources :invitations, only: %i[create update destroy]
+  resources :guestlists, only: [:index]
+  resources :hostings, only: [:index]
+  resources :participations, only: [:index]
 end

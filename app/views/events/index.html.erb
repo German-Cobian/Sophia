@@ -1,0 +1,76 @@
+<div class= "mt-3 mx-5 d-flex flex_row justify-content-between">
+  <h4>Events</h4>
+  <%= render '/shared/eventnav' %>
+</div>
+
+<div class="d-flex flex-wrap">
+
+  <div class="border border-dark rounded my-3 mx-5 py-3 e-cont">
+    <h4 class="ps-5">Upcoming Events:</h4>
+    <% @upcoming_events.order(:date).each do |event| %>
+      <div>
+        <div class="border-bottom border-dark py-4 px-5">
+
+          <div class="d-flex flex-row">
+            <%= image_tag( event.image, height: 100, width: 100, class: "" ) if event.image.attached? %>
+            <div class="ms-3">
+              <p><strong><%= event.title %></strong></p>
+              <div>
+                <span><%= image_tag "calendar.jpg", size: "20x20", class: "me-1" %></span>
+                <span><small><%= event.date.strftime("%b %d %Y") %></small></span>
+              </div>
+              <div>
+                <span><%= image_tag "location.jpg", size: "20x20", class: "me-1" %></span>
+                <span><small><%= event.location %></span>
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-end">
+              <%= image_tag( event.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) if event.creator.avatar.attached? %>
+              <small class="ms-2"><%= event.creator.username %></small>
+            </div>
+          </div>
+          <div class="border border-dark rounded my-2 py-3 px-3">
+            <%= event.description %>
+          </div>
+          <small><%= link_to 'More', event_path(id: event.id) %></small>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="border border-dark rounded my-3 mx-5 py-3">
+    <h4 class="ps-5">Past Events:</h4>
+    <% @past_events.order(:date).each do |event| %>
+      <div>
+        <div class="py-4 px-5 border-bottom border-dark pb-3">
+
+          <div class="d-flex flex-row">
+            <%= image_tag( event.image, height: 75, width: 75, class: "" ) if event.image.attached? %>
+            <div class="ms-3">
+              <p><small><strong><%= event.title %></strong></small></p>
+              <div>
+                <span><%= image_tag "calendar.jpg", size: "15x15", class: "me-1" %></span>
+                <span><small><%= event.date.strftime("%b %d %Y") %></small></span>
+              </div>
+              <div>
+                <span><%= image_tag "location.jpg", size: "20x20", class: "me-1" %></span>
+                <span><small><%= event.location %></span>
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-end">
+              <%= image_tag( event.creator.avatar, height: 25, width: 25, class: "rounded-circle" ) if event.creator.avatar.attached? %>
+              <small class="ms-2"><%= event.creator.username %></small>
+            </div>
+          </div>
+          <div class="border border-dark rounded my-3 py-2 px-2">
+            <small><%= event.description %></small>
+          </div>
+          <small><%= link_to 'More', event_path(id: event.id) %></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+

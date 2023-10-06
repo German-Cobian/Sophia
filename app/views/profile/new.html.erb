@@ -1,0 +1,44 @@
+<div class="d-flex flew-row justify-content-center">
+  
+  <div class="col-6 border boder-dark rounded my-5">
+
+    <h2 class="mx-5 my-3">Set your Profile Info</h2>
+
+    <%= form_with model: current_user, local: true, url: profile_path(current_user) do |f| %>
+      
+      <div class="mx-5 my-3">
+        <b class="pe-4"><%= f.label :username, class: "form-label" %></b>
+        <%= f.text_field :username, class: "form-control" %>
+      </div>
+      <div class="mx-5 my-3">
+        <b class="pe-4"><%= f.label :display_name, class: "form-label" %></b>
+        <%= f.text_field :display_name, class: "form-control" %>
+      </div>
+      <div class="mx-5 my-3">
+        <b class="pe-4"><%= f.label :avatar, class: "form-label" %></b>
+        <%= f.file_field :avatar, class: "form-control" %>
+      </div>
+      <div class="mx-5 my-3">
+        <b class="pe-4"><%= f.label :date_of_birth, class: "form-label" %></b>
+        <%= f.date_field :date_of_birth, class: "form-control" %>
+      </div>
+      <div class="mx-5 my-3">
+      <b class="pe-4"><%= f.label :city, class: "form-label" %></b>
+      <%= f.text_field :city, class: "form-control" %>
+    </div>
+      <div class="mx-5 my-3">
+        <b class="pe-4"><%= f.label :country, class: "form-label" %></b>
+        <%= f.text_field :country, class: "form-control" %>
+      </div>
+      <div class="mx-5 my-3">
+        <b class="pe-4"><%= f.label :bio, class: "form-label" %></b>
+        <%= f.text_area :bio, size: "100x4", class: "form-control" %>
+      </div>
+      <div class="mx-5 my-3">
+        <%= f.submit "set user info", class: "btn btn-outline-primary rounded-pill py-0" %>
+      </div>
+      
+    <% end %>
+
+  </div>
+</div>

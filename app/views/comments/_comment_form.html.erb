@@ -1,0 +1,13 @@
+<%= form_with(model: [@article, @article.comments.build]) do |f| %>
+  <div class="mt-3">
+    <p class="me-3"><small><strong>Comment:</strong></small></p>
+    <div class="d-flex flex-row">
+
+      <%= f.text_area :body, placeholder: 'Your response here', size: "100x3", class:'rounded' %>
+      <% if !parent.nil? %>
+        <%= f.hidden_field :parent_id, value: parent.id %>    
+      <% end %>
+      <%= image_submit_tag("Post.jpg", height: "25", width: "25", class: "mt-5 ms-3") %>
+    </div>
+  </div>
+<% end %>

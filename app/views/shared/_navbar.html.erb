@@ -1,13 +1,13 @@
 <div class="d-flex flex-row justify-content-around align-items-center border-bottom pt-2 text-bg-dark">
 
-  <div class="mb-2 ms-2">
-    <h5 class="txt-n2"> Sophia <span class="">&#183;</span></h5>
+  <div class="mb-2 mx-3">
+    <h5 class="txt-n2"> Sophia <span class=""></h5>
   </div>
 
   <div class="d-flex flex-row justify-content-between mb-2">
     <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle txt-n" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Philosophy topics
+      <button class="btn btn-outline-secondary dropdown-toggle txt-n" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Navigate Sophia
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <div class="me-5">
@@ -16,6 +16,10 @@
         <% Category.find_each do |category| %>
           <%= link_to category.topic, category, class: "dropdown-item txt-drop me-4" %>
         <% end %>
+        <div class="me-5">
+          <small><%= link_to("Search", articles_path, class: "link lnk-h ms-3") %></small>
+          <small><%= link_to("Events", events_path, class: "link lnk-h ms-3") %></small>
+        </div>
       </div>
     </div>
   </div>
@@ -32,10 +36,15 @@
         <%= link_to "Create Article", new_article_path, class:"txt-n" %>
       </div>
 
+      <% if current_user.admin? %>
+        <div class="pe-3">  
+          <%= link_to "Manage Categories", new_category_path, class:"txt-n" %>
+        </div>
+      <% end %>
+
       <div class="pe-3">
         <%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete}, class: "txt-n" %>
       </div>
-
 
     <% else%> 
 

@@ -1,14 +1,18 @@
-<div class="my-5 mx-5">
-
+<div class="border border-dark rounded my-5 mx-5">
+  <div class="my-3 mx-5">
+  
     <div class="d-flex flex-row justify-content-start">
-      <%= image_tag( @article.image, height: 120, width: 120, class: "me-5" ) if @article.image.attached? %> 
+      <%= image_tag( @article.image, height: 120, width: 120, class: "me-5" ) %> 
       <div class="mt-3">
         <strong class="me-4"><%= @article.title %></strong>
         <small><%= @article.category.topic%></small>
         <div class="d-flex flex-row justify-content-start mt-3">
-          <p class="me-3"><strong>By: </strong></p>
-          <%= image_tag( @article.user.avatar, height: 30, width: 30, class: "rounded-circle" ) if @article.user.avatar.attached?%>
-          <p class="ms-2"><%= @article.user.username %><p>
+          <p class="me-3"><small><strong>By: </strong></small></p>
+          <%= image_tag( @article.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) if @article.creator.avatar.attached? %>
+          <p class="ms-2"><small><%= @article.creator.username %></small><p>
+          <% if current_user %>
+            <p class="ms-5"><small><%= link_to 'View Profile', profile_path(@article.creator), class: "" %></small></p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -18,15 +22,19 @@
     </div>
 
     <div class="d-flex flex-row mt-3">
-      <div class="mt-1">
-        <span><strong>Votes: </strong><%= @article.votes.count %></span>
+      <div class="mt-1 me-5">
+        <span><small><strong>Votes: </strong><%= @article.votes.count %></small></span>
       </div>
       <% if current_user %>
         <% vote = current_user.votes.find_by(article: @article) %>
         <% if vote.nil? %>
-          <%= button_to "Upvote", votes_path, params: { vote: {:article_id => @article.id } }, method: :post, class: "btn btn-outline-primary py-0 ms-5" %>
+          <%= button_to votes_path, params: { vote: {:article_id => @article.id } }, method: :post, class: "" do %>
+            <%= image_tag "heart.jpg", height: "15", class: "" %>
+          <% end %>
         <% else %>
-          <%= button_to "Downvote", vote_path(vote), method: :delete, class: "btn btn-outline-primary py-0 ms-5" %>
+          <%= button_to vote_path(vote), method: :delete, class: "-5" do %>
+            <%= image_tag "heart-full.jpg", height: "15", class: "" %>
+          <% end %>
         <% end %>
       <% end %>
     </div>
@@ -36,12 +44,28 @@
         <%= render '/comments/show' %>
       </div>
       <div>
-        <%= render '/comments/form' %>
+        <%= render '/comments/comment_form', article: @article, parent: nil %>
       </div>
+      <% if  @article.creator == current_user || current_user.admin? %>
+        <div class="d-flex flex-row justify-content-end mt-2">
+          <p class="mt-2 me-3"><small>Manage Article:</p></small>
+          <div class="mt-1 me-3">
+            <%= link_to edit_article_path(@article), class: "" do %>
+              <%= image_tag "Edit.jpg", width: "25", class: "" %>
+            <% end %>
+          </div>
+          <div>
+            <%= button_to article_path(@article), method: :delete, class:"" do%>
+              <%= image_tag "Trash-can.jpg", width: "15", class: "trash" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
 
     <div class="mt-3">
-      <%= link_to 'Back', categories_path %>
+      <small><%= link_to 'Back', categories_path %></small>
     </div>
 
+  </div>
 </div>

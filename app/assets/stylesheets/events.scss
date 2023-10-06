@@ -1,0 +1,11 @@
+.e-cont {
+  width: 40%;
+}
+
+@media screen and (max-width: 1000px) {
+  .e-cont {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}

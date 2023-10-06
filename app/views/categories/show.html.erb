@@ -1,19 +1,19 @@
 <div class="my-5">
   <h4 class="ms-5"><b><%= @category.topic %></b></h4>
-  <div class="d-flex flex-column flex-lg-row justify-content-start mx-5">
+  <div class="d-flex flex-wrap justify-content-start mx-5">
     <% @category.articles.order('created_at DESC').each do |article|%>
-      <div class="cat3-container d-flex flex-column flex-lg-row border mt-3 ml-2">
+      <div class="cat3-container d-flex flex-column flex-lg-row border border-dark rounded mt-3 ml-2">
         <div class="img-cat">
-          <%= image_tag(article.image, height: 220, width: 220) if article.image.attached? %> 
+          <%= image_tag(article.image, height: 220, width: 220, class: "me-5" ) %> 
         </div>
         <div>
           <h6 class="mt-2 mx-2"><b><%= article.title %></b></h6>
-          <p class="mx-2"><%= truncate article.body, length: 200 %></p>
           <div class="d-flex flex-row ms-2">
-                <%= image_tag( article.user.avatar, height: 30, width: 30, class: "rounded-circle" ) if article.user.avatar.attached? %></span>
-                <p class="ms-2"><%= article.user.username%></p>
+                <%= image_tag( article.creator.avatar, height: 30, width: 30, class: "rounded-circle" ) if article.creator.avatar.attached? %></span>
+                <p class="ms-2"><small><%= article.creator.username%></small></p>
           </div>
-          <p class="ms-2"><%= link_to 'Read More', article_path(article) %></p> 
+          <p class="mx-2"><%= truncate article.body, length: 200 %></p>
+          <p class="ms-2"><small><%= link_to 'Read More', article_path(article) %></small></p> 
         </div>
       </div>
     <% end %>
