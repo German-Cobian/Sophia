@@ -94,10 +94,6 @@ GEM
       xpath (~> 3.2)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
-    countries (5.6.0)
-      unaccent (~> 0.3)
-    country_select (8.0.2)
-      countries (~> 5.0)
     crass (1.0.6)
     cssbundling-rails (1.2.0)
       railties (>= 6.0.0)
@@ -275,7 +271,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unaccent (0.4.0)
     unicode-display_width (2.4.2)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -303,7 +298,6 @@ DEPENDENCIES
   bootsnap
   cancancan (~> 3.5)
   capybara
-  country_select (~> 8.0)
   cssbundling-rails (~> 1.2)
   debug
   devise
